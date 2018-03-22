@@ -11,12 +11,9 @@
 <table class="table">
   <thead class="thead-dark">
     <tr>
-      <th scope="col">#</th>
       <th scope="col">Piezas</th>
       <th scope="col">Ancho</th>
-      <th></th>
       <th scope="col">Alto</th>
-      <th></th>
       <th scope="col">Largo</th>
       <th scope="col">Descripcion</th>
       <th scope="col">Procesado</th>
@@ -26,11 +23,8 @@
   </thead>
   <tbody>
     <% if @order.articles.present? %>
-      <% x=0 %>
       <% @order.articles.each do |article| %>
         <tr>
-          <th scope="row"><%= x+=1 %></th>
-
           <td> <%= sprintf("%g", article.quantity) %> </td>
           <td> <%= sprintf("%g", article.width) %> </td>
           <td> <%= article.width_measure.name %> </td>
