@@ -1,0 +1,36 @@
+<h1 class"h1">Zonas</h1>
+
+<br/><br/>
+
+<div>
+  <div>
+      <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Pedidos a Entregar</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% if @areas.present? %>
+          <% x=0 %>
+            <% @areas.each do |area| %>
+              <tr>
+                <th scope="row"><%= x+=1 %></th>
+                <td>
+                  <%= link_to area.name, area %>
+                </td>
+                <td> <%= area.not_delivered.count %> </td>
+              </tr>
+            <% end %>
+          <% end %>
+        </tbody>
+      </table>
+    <div>
+      <% if policy(Client).new? %>
+        <%= link_to 'Nueva Zona', new_area_path, class: "btn btn-outline-primary" %>
+      <% end %>
+    </div>
+  </div>
+</div>

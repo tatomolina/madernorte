@@ -1,0 +1,61 @@
+<h1> Pedido N°: <%= @order.id %> </h1>
+<h2> Fecha: <%= @order.created_at.to_date.to_formatted_s(:iso8601) %> </h2>
+<h3> Cliente: <%= link_to @order.client.name, client_path(@order.client) %> </h3>
+<h3> Direccion: <%= @order.direction %> </h3>
+<hr>
+<div class="row justify-content-center">
+  <h3> Articulos: </h3>
+</div>
+
+
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Piezas</th>
+      <th scope="col">Ancho</th>
+      <th></th>
+      <th scope="col">Alto</th>
+      <th></th>
+      <th scope="col">Largo</th>
+      <th scope="col">Descripcion</th>
+      <th scope="col">Procesado</th>
+      <th scope="col">Entregado</th>
+      <th scope="col">Facturado</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if @order.articles.present? %>
+      <% x=0 %>
+      <% @order.articles.each do |article| %>
+        <tr>
+          <th scope="row"><%= x+=1 %></th>
+
+          <td> <%= sprintf("%g", article.quantity) %> </td>
+          <td> <%= sprintf("%g", article.width) %> </td>
+          <td> <%= article.width_measure.name %> </td>
+          <td> <%= sprintf("%g", article.height) %> </td>
+          <td> <%= article.height_measure.name %> </td>
+          <td> <%= sprintf("%g", article.long) %> </td>
+          <td> <%= article.description %> </td>
+
+          <td><%= check_box "article", "done", {:checked => article.done?, :disabled => true} %></td>
+          <td><%= check_box "article", "delivered", {:checked => article.delivered?, :disabled => true }%></td>
+          <td><%= check_box "article", "invoiced", {:checked => article.invoiced?, :disabled => true} %></td>
+
+        </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
+
+<div class="row justify-content-center">
+  <% if policy(@order).edit? %>
+    <%= link_to "Editar", edit_order_path(@order), class:"btn btn-primary" %>
+  <% end %>
+  &nbsp;
+  <% if policy(@order).destroy? %>
+    <%= link_to 'Eliminar', order_path(@order), class:"btn btn-danger",
+        method: :delete, data: { confirm: 'Estas seguro?' } %>
+  <% end %>
+</div>

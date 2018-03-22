@@ -1,0 +1,36 @@
+<h1 class"h1">Clientes</h1>
+
+<br/><br/>
+
+<div>
+  <div>
+      <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Cantidad de Pedidos</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% if @clients.present? %>
+          <% x=0 %>
+            <% @clients.each do |client| %>
+              <tr>
+                <th scope="row"><%= x+=1 %></th>
+                <td>
+                  <%= link_to client.name, client %>
+                </td>
+                <td> <%= client.orders.count %> </td>
+              </tr>
+            <% end %>
+          <% end %>
+        </tbody>
+      </table>
+    <div>
+      <% if policy(Client).new? %>
+        <%= link_to 'Nuevo Cliente', new_client_path, class: "btn btn-outline-primary" %>
+      <% end %>
+    </div>
+  </div>
+</div>

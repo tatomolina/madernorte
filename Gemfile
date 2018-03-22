@@ -25,10 +25,25 @@ gem 'coffee-rails', '~> 4.2'
 gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
+
+gem 'bootstrap', '~> 4.0.0'
+
+gem 'simple_form', '~> 3.5', '>= 3.5.1'
+
+gem 'jquery-rails', '~> 4.3', '>= 4.3.1'
+
+gem 'cocoon', '~> 1.2', '>= 1.2.11'
+
+# AuthenticationA
+gem 'devise', '~> 4.4', '>= 4.4.3'
+# Admin backend
+gem 'rails_admin', '~> 1.3'
+# Managing roles
+gem 'rolify', '~> 5.2'
+gem 'pundit', '~> 1.1'
+
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
-# Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
@@ -52,3 +67,5 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+ruby "2.4.1"

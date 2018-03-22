@@ -1,0 +1,18 @@
+// Custom bootstrap variables must be set or imported *before* bootstrap.
+@import "bootstrap";
+
+main {
+  @extend .container;
+  background-color: #eee;
+  padding-bottom: 80px;
+  padding-top: 20px;
+  width: 100%;
+  margin-top: 0px; // accommodate the navbar
+}
+
+.measure {
+  width: 85px;
+}
+.measure-long {
+  width: 100px;
+}

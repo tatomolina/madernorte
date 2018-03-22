@@ -1,0 +1,55 @@
+<%= simple_form_for @order do |form| %>
+
+<div>
+  <div>
+    <div>
+      <% if (current_user.has_role?(:admin) || current_user.has_role?(:vendor))  %>
+        <%= form.association :client, label: "Cliente", class: "" %>
+        <hr>
+        <%= form.input :direction, label: "Direccion", class: "" %>
+        <%= form.association :area, label: "Zona", class: "" %>
+      <% elsif current_user.has_role? :worker %>
+        <h1> Pedido N°: <%= @order.id %> </h1>
+        <h2> Fecha: <%= @order.created_at.to_date.to_formatted_s(:iso8601) %> </h2>
+        <h3> Cliente: <%= link_to @order.client.name, client_path(@order.client) %> </h3>
+        <h3> Direccion: <%= @order.direction %> </h3>
+        <hr>
+      <% end %>
+
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Piezas</th>
+            <th>Ancho</th>
+            <th class="measure"></th>
+            <th class="measure">Alto</th>
+            <th class="measure"></th>
+            <th class="measure-long">Largo</th>
+            <th>Descripcion</th>
+            <th>Procesado</th>
+            <th>Entregado</th>
+            <th>Facturado</th>
+          </tr>
+        </thead>
+
+        <tbody class="articles">
+          <%= form.simple_fields_for :articles do |form_builder| %>
+            <%= render 'article_fields', f:  form_builder %>
+          <% end %>
+        </tbody>
+
+      </table>
+
+      <br/>
+
+      <div class="">
+        <%= form.button :submit, class: "btn btn-success"  %>
+        <%= link_to_add_association "Agregar Articulo", form, :articles, class: "btn btn-primary",
+        data: { association_insertion_node: ".articles", association_insertion_method: :append } %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<% end %>

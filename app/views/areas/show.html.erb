@@ -1,0 +1,55 @@
+
+<div class="row justify-content-center">
+  <h1> <%= @area.name %> </h1>
+</div>
+<hr>
+<div class="row justify-content-center">
+  <h2>Pedidos:</h2>
+</div>
+
+
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Cliente</th>
+      <th scope="col">Fecha</th>
+      <th scope="col">Direccion</th>
+      <th scope="col">Procesado</th>
+      <th scope="col">Entregado</th>
+      <th scope="col">Facturado</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if @area.not_delivered.present? %>
+    <% x=0 %>
+      <% @area.not_delivered.each do |order| %>
+        <tr>
+          <th scope="row"><%= x+=1 %></th>
+
+          <td> <%= order.client.name %> </td>
+          <td> <%= order.created_at.to_date.to_formatted_s(:iso8601) %> </td>
+          <td> <%= order.direction %> </td>
+
+          <td><%= check_box "order", "done?", {:checked => order.done?, :disabled => true}%></td>
+          <td><%= check_box "order", "delivered?", {:checked => order.delivered?, :disabled => true}%></td>
+          <td><%= check_box "order", "invoiced?", {:checked => order.invoiced?, :disabled => true}%></td>
+
+          <td> <%= link_to "Ver", order_path(order) %> </td>
+        </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
+
+<div class="row justify-content-center">
+  <% if policy(@area).edit? %>
+    <%= link_to "Editar", edit_area_path(@area), class: "btn btn-primary" %>
+  <% end %>
+  &nbsp;
+  <% if policy(@area).edit? %>
+    <%= link_to 'Eliminar',area_path(@area), method: :delete, class: "btn btn-danger",
+                                data: { confirm: 'Are you sure?' } %>
+  <% end %>
+</div>
