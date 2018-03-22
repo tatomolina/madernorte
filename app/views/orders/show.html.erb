@@ -13,7 +13,9 @@
     <tr>
       <th scope="col">Piezas</th>
       <th scope="col">Ancho</th>
+      <th>X</th>
       <th scope="col">Alto</th>
+      <th>X</th>
       <th scope="col">Largo</th>
       <th scope="col">Descripcion</th>
       <th scope="col">Procesado</th>
@@ -26,10 +28,20 @@
       <% @order.articles.each do |article| %>
         <tr>
           <td> <%= sprintf("%g", article.quantity) %> </td>
-          <td> <%= sprintf("%g", article.width) %> </td>
-          <td> <%= article.width_measure.name %> </td>
-          <td> <%= sprintf("%g", article.height) %> </td>
-          <td> <%= article.height_measure.name %> </td>
+          <td>
+            <%= sprintf("%g", article.width) %>
+            <% if(article.width_cm == true) %>
+              cm
+            <% end %>
+          </td>
+          <td>x</td>
+          <td>
+            <%= sprintf("%g", article.height) %>
+            <% if(article.height_cm == true) %>
+              cm
+            <% end %>
+          </td>
+          <td>x</td>
           <td> <%= sprintf("%g", article.long) %> </td>
           <td> <%= article.description %> </td>
 

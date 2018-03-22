@@ -70,6 +70,6 @@ class OrdersController < ApplicationController
   def order_params
     params.require(:order).permit(:direction, :client_id, :area_id,
       articles_attributes: [:id, :_destroy, :order_id, :quantity, :width, :height,
-         :long, :description, :done, :delivered, :invoiced, :width_measure_id, :height_measure_id])
+         :long, :description, :done, :delivered, :invoiced, :width_cm, :height_cm])
   end
 end
