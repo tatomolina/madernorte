@@ -7,17 +7,14 @@
       <table class="table table-striped">
         <thead class="thead-dark">
           <tr>
-            <th scope="col">#</th>
             <th scope="col">Nombre</th>
             <th scope="col">Pedidos a Entregar</th>
           </tr>
         </thead>
         <tbody>
           <% if @areas.present? %>
-          <% x=0 %>
             <% @areas.each do |area| %>
               <tr>
-                <th scope="row"><%= x+=1 %></th>
                 <td>
                   <%= link_to area.name, area %>
                 </td>

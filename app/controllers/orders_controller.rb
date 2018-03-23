@@ -1,7 +1,7 @@
 class OrdersController < ApplicationController
 
   def index
-    @orders = Order.all
+    @orders = Order.all.order(created_at: :desc)
     @orders = @orders.select { |x| x.done? == false || x.delivered? == false || x.invoiced? == false }
     # If the user is a Worker I only show him the orders that need to be precesed
     if current_user.has_role?(:worker)
