@@ -42,6 +42,9 @@ gem 'rails_admin', '~> 1.3'
 gem 'rolify', '~> 5.2'
 gem 'pundit', '~> 1.1'
 
+# Pagination
+gem 'kaminari', '~> 1.1', '>= 1.1.1'
+
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 

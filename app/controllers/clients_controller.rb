@@ -1,12 +1,13 @@
 class ClientsController < ApplicationController
 
   def index
-    @clients = Client.all
+    @clients = Client.order(:name).page(params[:page]).per(10)
     authorize Client
   end
 
   def show
     @client = Client.find(params[:id])
+    @orders = Kaminari.paginate_array(@client.orders).page(params[:page]).per(10)
     authorize @client
   end
 

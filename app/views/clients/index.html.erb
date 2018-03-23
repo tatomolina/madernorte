@@ -4,20 +4,17 @@
 
 <div>
   <div>
-      <table class="table">
+      <table class="table table-striped">
         <thead class="thead-dark">
           <tr>
-            <th scope="col">#</th>
             <th scope="col">Nombre</th>
             <th scope="col">Cantidad de Pedidos</th>
           </tr>
         </thead>
         <tbody>
           <% if @clients.present? %>
-          <% x=0 %>
             <% @clients.each do |client| %>
               <tr>
-                <th scope="row"><%= x+=1 %></th>
                 <td>
                   <%= link_to client.name, client %>
                 </td>
@@ -27,6 +24,7 @@
           <% end %>
         </tbody>
       </table>
+      <%= paginate @clients %>
     <div>
       <% if policy(Client).new? %>
         <%= link_to 'Nuevo Cliente', new_client_path, class: "btn btn-outline-primary" %>

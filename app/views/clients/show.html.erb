@@ -8,7 +8,7 @@
 </div>
 
 
-<table class="table">
+<table class="table table-striped">
   <thead class="thead-dark">
     <tr>
       <th scope="col">#</th>
@@ -21,12 +21,8 @@
     </tr>
   </thead>
   <tbody>
-    <% if @client.orders.present? %>
-    <% x=0 %>
-      <% @client.orders.each do |order| %>
+      <% @orders.each do |order| %>
         <tr>
-          <th scope="row"><%= x+=1 %></th>
-
           <td> <%= order.created_at.to_date.to_formatted_s(:iso8601) %> </td>
           <td> <%= order.direction %> </td>
 
@@ -37,10 +33,9 @@
           <td> <%= link_to "Ver", order_path(order) %> </td>
         </tr>
       <% end %>
-    <% end %>
   </tbody>
 </table>
-
+<%= paginate @orders %>
 <div class="row justify-content-center">
   <% if policy(@client).edit? %>
     <%= link_to "Editar", edit_client_path(@client), class: "btn btn-primary" %>
