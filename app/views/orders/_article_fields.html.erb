@@ -12,5 +12,7 @@
   <% if (current_user.has_role?(:admin) || current_user.has_role?(:vendor))  %>
     <td> <%= f.input :invoiced, as: :boolean, label: false %> </td>
     <td> <%= f.input :process, as: :boolean, label: false %> </td>
+  <% else %>
+  <td></td>
   <% end %>
 </tr>

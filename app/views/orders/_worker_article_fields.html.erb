@@ -1,0 +1,13 @@
+<tr class="nested-fields">
+  <td> <%= link_to_remove_association "Eliminar articulo", f, class: "btn btn-danger" %> </td>
+  <td> <%= f.input :quantity, label: false, disabled: true %> </td>
+  <td> <%= f.input :width, label: false, disabled: true %> </td>
+  <td> <%= f.input :width_cm, as: :boolean, label: false, disabled: true %> </td>
+  <td> <%= f.input :height, label: false, disabled: true %> </td>
+  <td> <%= f.input :height_cm, as: :boolean, label: false, disabled: true %> </td>
+  <td> <%= f.input :long, label: false, disabled: true %> </td>
+  <td> <%= f.input :description, label: false, disabled: true %> </td>
+  <td> <%= f.input :done, as: :boolean, label: false %> </td>
+  <td> <%= f.input :delivered, as: :boolean, label: false %> </td>
+  <td> <%= f.input :invoiced, as: :boolean, label: false, disabled: true %> </td>
+</tr>

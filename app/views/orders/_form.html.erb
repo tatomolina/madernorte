@@ -38,7 +38,11 @@
 
         <tbody class="articles">
           <%= form.simple_fields_for :articles do |form_builder| %>
-            <%= render 'article_fields', f:  form_builder %>
+            <% if (current_user.has_role?(:admin) || current_user.has_role?(:vendor))  %>
+              <%= render 'article_fields', f:  form_builder %>
+            <% else %>
+              <%= render 'worker_article_fields', f:  form_builder %>
+            <% end %>
           <% end %>
         </tbody>
 

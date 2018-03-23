@@ -1,7 +1,7 @@
 <% if @orders.present? %>
   <% @orders.each do |order| %>
     <tr>
-      <td> <%= link_to order.client.name, order.client %> </td>
+      <td> <%= order.client.name %> </td>
       <td> <%= order.direction %> </td>
       <td> <%= order.created_at.to_date.to_formatted_s(:iso8601) %> </td>
 
