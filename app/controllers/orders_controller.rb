@@ -2,6 +2,7 @@ class OrdersController < ApplicationController
 
   def index
     @orders = Order.all
+    @orders = @orders.select { |x| x.done? == false || x.delivered? == false || x.invoiced? == false }
     @worker_orders = @orders.select { |x| x.process? }
     authorize Order
   end

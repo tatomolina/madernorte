@@ -1,7 +1,11 @@
 class ClientPolicy < ApplicationPolicy
 
   def index?
-    true
+    (user.present?) && ((user.has_role? :vendor) || (user.has_role? :admin))
+  end
+
+  def show?
+     (user.present?) && ((user.has_role? :vendor) || (user.has_role? :admin))
   end
 
   def create?

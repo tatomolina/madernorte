@@ -2,9 +2,11 @@
   <li class="nav-item">
     <%= link_to "Pedidos", orders_path, class: "nav-link" %>
   </li>
-  <li class="nav-item">
-    <%= link_to "Clientes", clients_path, class: "nav-link" %>
-  </li>
+  <% if policy(Client).index?%>
+    <li class="nav-item">
+      <%= link_to "Clientes", clients_path, class: "nav-link" %>
+    </li>
+  <% end %>
   <% if policy(Area).index?%>
     <li class="nav-item">
       <%= link_to "Reparto", areas_path, class: "nav-link" %>
