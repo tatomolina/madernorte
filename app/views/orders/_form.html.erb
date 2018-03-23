@@ -52,8 +52,10 @@
 
       <div class="">
         <%= form.button :submit, class: "btn btn-success"  %>
-        <%= link_to_add_association "Agregar Articulo", form, :articles, class: "btn btn-primary",
-        data: { association_insertion_node: ".articles", association_insertion_method: :append } %>
+        <% if (current_user.has_role?(:admin) || current_user.has_role?(:vendor))  %>
+          <%= link_to_add_association "Agregar Articulo", form, :articles, class: "btn btn-primary",
+          data: { association_insertion_node: ".articles", association_insertion_method: :append } %>
+        <% end %>
       </div>
     </div>
   </div>
