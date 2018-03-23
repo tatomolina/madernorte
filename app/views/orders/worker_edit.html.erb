@@ -1,0 +1,43 @@
+<%= simple_form_for @order do |form| %>
+
+<div>
+  <div>
+    <div>
+        <h4> Pedido N°: <%= @order.id %> </h4>
+        <h5> Fecha: <%= @order.created_at.to_date.to_formatted_s(:iso8601) %> </h5>
+        <h6> Cliente: <%= link_to @order.client.name, client_path(@order.client) %> </h6>
+        <h6> Direccion: <%= @order.direction %> </h6>
+        <hr>
+
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Piezas</th>
+            <th>Ancho</th>
+            <th class="measure">Alto</th>
+            <th class="measure-long">Largo</th>
+            <th>Descripcion</th>
+            <th>Procesado</th>
+            <th>Entregado</th>
+          </tr>
+        </thead>
+
+        <tbody class="articles">
+          <%= form.simple_fields_for :articles do |form_builder| %>
+              <%= render 'worker_article_fields', f:  form_builder %>
+          <% end %>
+        </tbody>
+
+      </table>
+
+      <br/>
+
+      <div class="">
+        <%= form.button :submit, class: "btn btn-success"  %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<% end %>

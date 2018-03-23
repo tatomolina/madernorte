@@ -3,21 +3,14 @@
 <div>
   <div>
     <div>
-      <% if (current_user.has_role?(:admin) || current_user.has_role?(:vendor))  %>
-        <%= form.association :client, label: "Cliente", class: "" %>
-        <hr>
-        <%= form.input :direction, label: "Direccion", class: "" %>
-        <%= form.association :area, label: "Zona", class: "" %>
-        <%= form.input :phone, label: "Telefono", class: "" %>
-        <%= form.input :phone_reference, label: "Referencia del telefono", class: "" %>
-        <%= form.input :observations, label: "Observaciones", class: "" %>
-      <% elsif current_user.has_role? :worker %>
-        <h1> Pedido N°: <%= @order.id %> </h1>
-        <h2> Fecha: <%= @order.created_at.to_date.to_formatted_s(:iso8601) %> </h2>
-        <h3> Cliente: <%= link_to @order.client.name, client_path(@order.client) %> </h3>
-        <h3> Direccion: <%= @order.direction %> </h3>
-        <hr>
-      <% end %>
+      <%= form.association :client, label: "Cliente", class: "" %>
+      <hr>
+      <%= form.input :direction, label: "Direccion", class: "" %>
+      <%= form.association :area, label: "Zona", class: "" %>
+      <%= form.input :phone, label: "Telefono", class: "" %>
+      <%= form.input :phone_reference, label: "Referencia del telefono", class: "" %>
+      <%= form.input :observations, label: "Observaciones", class: "" %>
+
 
       <table class="table table-striped">
         <thead>
@@ -33,19 +26,13 @@
             <th>Procesado</th>
             <th>Entregado</th>
             <th>Facturado</th>
-            <% if (current_user.has_role?(:admin) || current_user.has_role?(:vendor))  %>
-              <th>Procesar</th>
-            <% end %>
+            <th>Procesar</th>
           </tr>
         </thead>
 
         <tbody class="articles">
           <%= form.simple_fields_for :articles do |form_builder| %>
-            <% if (current_user.has_role?(:admin) || current_user.has_role?(:vendor))  %>
-              <%= render 'article_fields', f:  form_builder %>
-            <% else %>
-              <%= render 'worker_article_fields', f:  form_builder %>
-            <% end %>
+            <%= render 'article_fields', f:  form_builder %>
           <% end %>
         </tbody>
 
@@ -55,10 +42,8 @@
 
       <div class="">
         <%= form.button :submit, class: "btn btn-success"  %>
-        <% if (current_user.has_role?(:admin) || current_user.has_role?(:vendor))  %>
           <%= link_to_add_association "Agregar Articulo", form, :articles, class: "btn btn-primary",
           data: { association_insertion_node: ".articles", association_insertion_method: :append } %>
-        <% end %>
       </div>
     </div>
   </div>

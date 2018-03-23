@@ -43,6 +43,15 @@ class OrdersController < ApplicationController
     @order = Order.find(params[:id])
     @order.articles.build
     authorize @order
+    if (current_user.has_role?(:admin) || current_user.has_role?(:worker))
+      redirect_to worker_order_edit_path
+    end
+  end
+
+  def worker_edit
+    @order = Order.find(params[:id])
+    @order.articles.build
+    authorize @order
   end
 
   def update

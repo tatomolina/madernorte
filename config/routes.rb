@@ -5,4 +5,5 @@ Rails.application.routes.draw do
   resources :clients
   resources :areas
   root 'orders#index'
+  get '/order/:id/worker_edit', to: 'orders#worker_edit', as: 'worker_order_edit'
 end

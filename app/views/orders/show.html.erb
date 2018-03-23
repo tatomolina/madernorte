@@ -1,15 +1,15 @@
-<h1> Pedido N°: <%= @order.id %> </h1>
-<h2> Fecha: <%= @order.created_at.to_date.to_formatted_s(:iso8601) %> </h2>
-<h3> Cliente: <%= @order.client.name %> </h3>
+<h4> Pedido N°: <%= @order.id %> </h4>
+<h5> Fecha: <%= @order.created_at.to_date.to_formatted_s(:iso8601) %> </h5>
+<h6> Cliente: <%= @order.client.name %> </h6>
 <% if (current_user.has_role?(:admin) || current_user.has_role?(:vendor))  %>
-  <h3> Direccion: <%= @order.direction %> </h3>
-  <h3> Telefono: <%= @order.phone %> </h3>
-  <h3> Referencia del telefono: <%= @order.phone_reference %> </h3>
-  <h3> Observaciones: <%= @order.observations %> </h3>
+  <h6> Direccion: <%= @order.direction %> </h6>
+  <h6> Telefono: <%= @order.phone %> </h6>
+  <h6> Referencia del telefono: <%= @order.phone_reference %> </h6>
+  <h6> Observaciones: <%= @order.observations %> </h6>
 <% end %>
 <hr>
 <div class="row justify-content-center">
-  <h3> Articulos: </h3>
+  <h6> Articulos: </h6>
 </div>
 
 
