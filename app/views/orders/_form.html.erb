@@ -8,6 +8,9 @@
         <hr>
         <%= form.input :direction, label: "Direccion", class: "" %>
         <%= form.association :area, label: "Zona", class: "" %>
+        <%= form.input :phone, label: "Telefono", class: "" %>
+        <%= form.input :phone_reference, label: "Referencia del telefono", class: "" %>
+        <%= form.input :observations, label: "Observaciones", class: "" %>
       <% elsif current_user.has_role? :worker %>
         <h1> Pedido N°: <%= @order.id %> </h1>
         <h2> Fecha: <%= @order.created_at.to_date.to_formatted_s(:iso8601) %> </h2>
