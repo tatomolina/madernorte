@@ -30,6 +30,9 @@
             <th>Procesado</th>
             <th>Entregado</th>
             <th>Facturado</th>
+            <% if (current_user.has_role?(:admin) || current_user.has_role?(:vendor))  %>
+              <th>Procesar</th>
+            <% end %>
           </tr>
         </thead>
 

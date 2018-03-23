@@ -13,9 +13,9 @@
     <tr>
       <th scope="col">Piezas</th>
       <th scope="col">Ancho</th>
-      <th>X</th>
+      <th>x</th>
       <th scope="col">Alto</th>
-      <th>X</th>
+      <th>x</th>
       <th scope="col">Largo</th>
       <th scope="col">Descripcion</th>
       <th scope="col">Procesado</th>
@@ -24,33 +24,10 @@
     </tr>
   </thead>
   <tbody>
-    <% if @order.articles.present? %>
-      <% @order.articles.each do |article| %>
-        <tr>
-          <td> <%= sprintf("%g", article.quantity) %> </td>
-          <td>
-            <%= sprintf("%g", article.width) %>
-            <% if(article.width_cm == true) %>
-              cm
-            <% end %>
-          </td>
-          <td>x</td>
-          <td>
-            <%= sprintf("%g", article.height) %>
-            <% if(article.height_cm == true) %>
-              cm
-            <% end %>
-          </td>
-          <td>x</td>
-          <td> <%= sprintf("%g", article.long) %> </td>
-          <td> <%= article.description %> </td>
-
-          <td><%= check_box "article", "done", {:checked => article.done?, :disabled => true} %></td>
-          <td><%= check_box "article", "delivered", {:checked => article.delivered?, :disabled => true }%></td>
-          <td><%= check_box "article", "invoiced", {:checked => article.invoiced?, :disabled => true} %></td>
-
-        </tr>
-      <% end %>
+    <% if (current_user.has_role?(:admin) || current_user.has_role?(:vendor))  %>
+      <%= render "vendor_show" %>
+    <% else %>
+      <%= render "worker_show" %>
     <% end %>
   </tbody>
 </table>

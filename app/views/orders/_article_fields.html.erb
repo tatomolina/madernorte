@@ -9,9 +9,8 @@
   <td> <%= f.input :description, label: false %> </td>
   <td> <%= f.input :done, as: :boolean, label: false %> </td>
   <td> <%= f.input :delivered, as: :boolean, label: false %> </td>
-  <td>
-    <% if (current_user.has_role?(:admin) || current_user.has_role?(:vendor))  %>
-      <%= f.input :invoiced, as: :boolean, label: false %>
-    <% end %>
-  </td>
+  <% if (current_user.has_role?(:admin) || current_user.has_role?(:vendor))  %>
+    <td> <%= f.input :invoiced, as: :boolean, label: false %> </td>
+    <td> <%= f.input :process, as: :boolean, label: false %> </td>
+  <% end %>
 </tr>

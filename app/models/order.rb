@@ -15,14 +15,22 @@ class Order < ApplicationRecord
   end
 
   def done?
-    self.articles.select{|x| x.done == true }.count == self.articles.count
+    self.articles.select{|x| x.done }.count == self.articles.count
   end
 
   def delivered?
-    self.articles.select{|x| x.delivered == true }.count == self.articles.count
+    self.articles.select{|x| x.delivered }.count == self.articles.count
   end
 
   def invoiced?
-    self.articles.select{|x| x.invoiced == true }.count == self.articles.count
+    self.articles.select{|x| x.invoiced }.count == self.articles.count
+  end
+
+  def process?
+    self.articles.select{|x| x.process }.count >= 1
+  end
+
+  def to_process
+    self.articles.select{|x| x.process }
   end
 end
