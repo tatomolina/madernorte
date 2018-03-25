@@ -74,14 +74,14 @@
 </table>
 
 <div class="row justify-content-center">
-  <%= link_to "Imprimir", "#", onclick: "window.print();return false;", class:"btn btn-success" %>
+  <%= link_to "Imprimir", "#", onclick: "window.print();return false;", class:"btn btn-outline-success" %>
   &nbsp;
   <% if policy(@order).edit? %>
-    <%= link_to "Editar", edit_order_path(@order), class:"btn btn-primary" %>
+    <%= link_to "Editar", edit_order_path(@order), class:"btn btn-outline-primary" %>
   <% end %>
   &nbsp;
   <% if policy(@order).destroy? %>
-    <%= link_to 'Eliminar', order_path(@order), class:"btn btn-danger",
+    <%= link_to 'Eliminar', order_path(@order), class:"btn btn-outline-danger",
         method: :delete, data: { confirm: 'Estas seguro?' } %>
   <% end %>
 </div>

@@ -33,6 +33,6 @@
 <%= paginate @orders %>
 <div class="row justify-content-center">
   <% if policy(@client).edit? %>
-    <%= link_to "Editar", edit_client_path(@client), class: "btn btn-primary" %>
+    <%= link_to "Editar", edit_client_path(@client), class: "btn btn-outline-primary" %>
   <% end %>
 </div>
