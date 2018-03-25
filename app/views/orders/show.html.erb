@@ -4,7 +4,7 @@
       <h5> Pedido N°: <%= @order.id %> </h5>
       <h5> Fecha: <%= @order.created_at.to_date.to_formatted_s(:iso8601) %> </h5>
       <h5> Cliente: <%= link_to @order.client.name, @order.client %> </h5>
-      <h5> Zona: <%= @order.area.name %> </h5>
+      <h5> Zona: <%= link_to @order.area.name, @order.area %> </h5>
       <h5> Direccion: <%= @order.direction %> </h5>
     </div>
     <div class="col-4">
