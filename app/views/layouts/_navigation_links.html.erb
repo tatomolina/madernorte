@@ -1,15 +1,15 @@
 <% if user_signed_in? %>
   <li class="nav-item">
-    <%= link_to "Pedidos", orders_path, class: "nav-link" %>
+    <%= link_to "Pedidos", orders_path, class: "nav-link #{current_class?(orders_path)}" %>
   </li>
   <% if policy(Client).index?%>
     <li class="nav-item">
-      <%= link_to "Clientes", clients_path, class: "nav-link" %>
+      <%= link_to "Clientes", clients_path, class: "nav-link #{current_class?(clients_path)}" %>
     </li>
   <% end %>
   <% if policy(Area).index?%>
     <li class="nav-item">
-      <%= link_to "Reparto", areas_path, class: "nav-link" %>
+      <%= link_to "Reparto", areas_path, class: "nav-link #{current_class?(areas_path)}" %>
     </li>
   <% end %>
   <% if current_user.has_role? :admin %>
