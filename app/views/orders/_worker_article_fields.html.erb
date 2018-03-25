@@ -1,10 +1,11 @@
 <tr class="nested-fields">
   <td> </td>
-  <td> <%= f.input :quantity,                 label: false, disabled: true %> </td>
-  <td> <%= f.input :width,                    label: false, disabled: true %> </td>
-  <td> <%= f.input :height,                   label: false, disabled: true %> </td>
-  <td> <%= f.input :long,                     label: false, disabled: true %> </td>
-  <td> <%= f.input :description,              label: false, disabled: true %> </td>
+  <td> <%= f.input :quantity,                 label: false, readonly: true %> </td>
+  <td> <%= f.input :width,                    label: false, readonly: true %> </td>
+  <td> <%= f.input :height,                   label: false, readonly: true %> </td>
+  <td> <%= f.input :long,                     label: false, readonly: true %> </td>
+  <td> <%= f.input :description,              label: false, readonly: true %> </td>
+  <td> <%= f.input :details,                  label: false %> </td>
   <td> <%= f.input :done, as: :boolean,       label: false %> </td>
   <td> <%= f.input :delivered, as: :boolean,  label: false %> </td>
 </tr>
