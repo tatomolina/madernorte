@@ -1,34 +1,39 @@
 <div class="row justify-content-center">
   <h1 class"h1">Clientes</h1>
 </div>
+<div class="row justify-content-center">
+<%= form_tag(clients_path, method: :get) do %>
+<%= text_field_tag :term, params[:term], class: "" %>
+<%= submit_tag 'Buscar', name: nil, class: "btn btn-success" %>
+<% end %>
+</div>
 <br>
 <div>
-  <div>
-      <table class="table table-striped">
-        <thead class="thead-dark">
+
+  <table class="table table-striped">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Nombre</th>
+        <th scope="col">Cantidad de Pedidos</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% if @clients.present? %>
+        <% @clients.each do |client| %>
           <tr>
-            <th scope="col">Nombre</th>
-            <th scope="col">Cantidad de Pedidos</th>
+            <td>
+              <%= link_to client.name, client %>
+            </td>
+            <td> <%= client.orders.count %> </td>
           </tr>
-        </thead>
-        <tbody>
-          <% if @clients.present? %>
-            <% @clients.each do |client| %>
-              <tr>
-                <td>
-                  <%= link_to client.name, client %>
-                </td>
-                <td> <%= client.orders.count %> </td>
-              </tr>
-            <% end %>
-          <% end %>
-        </tbody>
-      </table>
-      <%= paginate @clients %>
-    <div>
-      <% if policy(Client).new? %>
-        <%= link_to 'Nuevo Cliente', new_client_path, class: "btn btn-outline-primary" %>
+        <% end %>
       <% end %>
-    </div>
+    </tbody>
+  </table>
+  <%= paginate @clients %>
+  <div>
+    <% if policy(Client).new? %>
+      <%= link_to 'Nuevo Cliente', new_client_path, class: "btn btn-outline-primary" %>
+    <% end %>
   </div>
 </div>

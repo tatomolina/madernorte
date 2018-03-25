@@ -1,7 +1,7 @@
 class ClientsController < ApplicationController
 
   def index
-    @clients = Client.order(:name).page(params[:page]).per(10)
+    @clients = Client.search(params[:term]).page(params[:page]).per(10)
     authorize Client
   end
 
@@ -68,7 +68,7 @@ class ClientsController < ApplicationController
   private
 
   def client_params
-    params.require(:client).permit(:name)
+    params.require(:client).permit(:name, :term)
   end
 
 end
