@@ -37,13 +37,13 @@
         </tbody>
 
       </table>
+      <%= link_to_add_association "Agregar Articulo", form, :articles, class: "btn btn-outline-primary",
+      data: { association_insertion_node: ".articles", association_insertion_method: :append } %>
 
       <br/>
 
-      <div class="">
+      <div class="row justify-content-center">
         <%= form.button :submit, class: "btn btn-outline-success"  %>
-          <%= link_to_add_association "Agregar Articulo", form, :articles, class: "btn btn-outline-primary",
-          data: { association_insertion_node: ".articles", association_insertion_method: :append } %>
       </div>
     </div>
   </div>
