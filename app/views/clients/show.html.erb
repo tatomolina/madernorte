@@ -39,9 +39,4 @@
   <% if policy(@client).edit? %>
     <%= link_to "Editar", edit_client_path(@client), class: "btn btn-primary" %>
   <% end %>
-  &nbsp;
-  <% if policy(@client).edit? %>
-    <%= link_to 'Eliminar',client_path(@client), method: :delete, class: "btn btn-danger",
-                                data: { confirm: 'Are you sure?' } %>
-  <% end %>
 </div>

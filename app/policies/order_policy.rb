@@ -1,7 +1,15 @@
 class OrderPolicy < ApplicationPolicy
 
   def index?
-    true
+    (user.present?) && ((user.has_role? :vendor) || (user.has_role? :admin) || (user.has_role? :worker))
+  end
+
+  def worker_index?
+    (user.present?) && (user.has_role? :worker)
+  end
+
+  def worker_show?
+    (user.present?) && (user.has_role? :worker)
   end
 
   def create?

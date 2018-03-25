@@ -3,15 +3,30 @@ class OrdersController < ApplicationController
   def index
     @orders = Order.all.order(created_at: :desc)
     @orders = @orders.select { |x| x.done? == false || x.delivered? == false || x.invoiced? == false }
-    # If the user is a Worker I only show him the orders that need to be precesed
-    if current_user.has_role?(:worker)
-      @orders = @orders.select { |x| x.process? }
+    if (current_user.has_role?(:worker))
+      redirect_to worker_order_index_path
     end
     @orders = Kaminari.paginate_array(@orders).page(params[:page]).per(10)
     authorize Order
   end
 
+  def worker_index
+    # Only show him the orders that need to be precesed
+    @orders = Order.all.order(created_at: :desc)
+    @orders = @orders.select { |x| (x.done? == false || x.delivered? == false) && x.process? }
+    @orders = Kaminari.paginate_array(@orders).page(params[:page]).per(10)
+    authorize Order
+  end
+
   def show
+    @order = Order.find(params[:id])
+    authorize @order
+    if (current_user.has_role?(:worker))
+      redirect_to worker_order_show_path
+    end
+  end
+
+  def worker_show
     @order = Order.find(params[:id])
     authorize @order
   end
@@ -43,7 +58,7 @@ class OrdersController < ApplicationController
     @order = Order.find(params[:id])
     @order.articles.build
     authorize @order
-    if (current_user.has_role?(:admin) || current_user.has_role?(:worker))
+    if (current_user.has_role?(:worker))
       redirect_to worker_order_edit_path
     end
   end
