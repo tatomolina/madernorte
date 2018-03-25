@@ -42,7 +42,7 @@ class AreasController < ApplicationController
 
     if @area.update(area_params)
       flash[:notice] = "Area actualizada correctamente"
-      redirect_to areas_path
+      redirect_to area_path(params[:id])
     else
       flash[:alert] = "#{@order.errors.count} error no permitio actualizar esta areae: "
       @order.errors.full_messages.each do |msg|

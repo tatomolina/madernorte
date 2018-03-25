@@ -7,7 +7,8 @@ class ClientsController < ApplicationController
 
   def show
     @client = Client.find(params[:id])
-    @orders = Kaminari.paginate_array(@client.orders).page(params[:page]).per(10)
+    @orders = @client.orders.order(created_at: :desc)
+    @orders = Kaminari.paginate_array(@orders).page(params[:page]).per(10)
     authorize @client
   end
 
@@ -44,7 +45,7 @@ class ClientsController < ApplicationController
 
     if @client.update(client_params)
       flash[:notice] = "Pedido actualizado correctamente"
-      redirect_to clients_path
+      redirect_to client_path(params[:id])
     else
       flash[:alert] = "#{@order.errors.count} error no permitio actualizar este cliente: "
       @order.errors.full_messages.each do |msg|

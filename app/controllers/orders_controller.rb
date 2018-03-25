@@ -75,7 +75,7 @@ class OrdersController < ApplicationController
 
     if @order.update(order_params)
       flash[:notice] = "Pedido actualizado correctamente"
-      redirect_to root_path
+      redirect_to order_path(params[:id])
     else
       #If i cant update, i render again the edit view
       flash[:alert] = "#{@order.errors.count} errores no permitieron actualizar este pedido: "
