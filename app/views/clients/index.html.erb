@@ -30,8 +30,10 @@
       <% end %>
     </tbody>
   </table>
-  <%= paginate @clients %>
-  <div>
+  <div class="row justify-content-center">
+    <%= paginate @clients %>
+  </div>
+  <div class="row justify-content-center">
     <% if policy(Client).new? %>
       <%= link_to 'Nuevo Cliente', new_client_path, class: "btn btn-outline-primary" %>
     <% end %>
