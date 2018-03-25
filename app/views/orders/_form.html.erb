@@ -3,13 +3,15 @@
 <div>
   <div>
     <div>
-      <%= form.association :client, label: "Cliente", class: "" %>
+      <%= form.association :client, label: "Cliente" %>
       <hr>
-      <%= form.input :direction, label: "Direccion", class: "" %>
-      <%= form.association :area, label: "Zona", class: "" %>
-      <%= form.input :phone, label: "Telefono", class: "" %>
-      <%= form.input :phone_reference, label: "Referencia del telefono", class: "" %>
-      <%= form.input :observations, label: "Observaciones", class: "" %>
+      <%= form.input :direction, label: "Direccion" %>
+      <%= form.association :area, label: "Zona" %>
+      <%= form.input :phone, label: "Telefono" %>
+      <%= form.input :phone_reference, label: "Referencia del telefono" %>
+      <%= form.input :observations, label: "Observaciones" %>
+      <hr>
+      <%= form.association :priority, label: "Prioridad", selected: 1 %>
 
 
       <table class="table table-striped">
