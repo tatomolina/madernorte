@@ -16,3 +16,25 @@ main {
 .measure-long {
   width: 100px;
 }
+
+.authform {
+  padding-top: 30px;
+  max-width: 320px;
+  margin: 0 auto;
+}
+.authform form {
+  padding-bottom: 40px;
+}
+
+.authform .button {
+  @extend .btn;
+  @extend .btn-primary;
+}
+
+#error_explanation:not(:empty) {
+  @extend .alert;
+  @extend .alert-danger;
+}
+#error_explanation h2 {
+  font-size: 16px;
+}
