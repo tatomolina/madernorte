@@ -22,8 +22,7 @@ worker = User.new(
 worker.add_role :worker
 worker.save!
 
-tato = Client.new( name: "Gaston Molina" )
-tato.save!
-
-edy = Client.new( name: "Edgardo Molina" )
-edy.save!
+for i..15
+  Client.create!( name: "Cliente #{i}" )
+  i++
+end

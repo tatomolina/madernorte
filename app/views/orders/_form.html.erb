@@ -6,12 +6,20 @@
       <%= form.association :client, label: "Cliente", class: "form-control" %>
       <%= form.input :phone, label: "Telefono", class: "form-control" %>
       <%= form.input :phone_reference, label: "Referencia del telefono", class: "form-control" %>
-      <%= form.association :priority, label: "Prioridad", selected: 1, class: "form-control" %>
     </div>
     <div class="col">
     <%= form.input :direction, label: "Direccion", class: "form-control" %>
     <%= form.association :area, label: "Zona", class: "form-control" %>
     <%= form.input :observations, label: "Observaciones", class: "form-control" %>
+  </div>
+</div>
+<hr>
+<div class="row">
+  <div class="col">
+    <%= form.association :priority, label: "Prioridad", selected: 1, class: "form-control" %>
+  </div>
+  <div class="col">
+    <%= form.association :vendor, label: "Vendedor", class: "form-control" %>
   </div>
 </div>
 
