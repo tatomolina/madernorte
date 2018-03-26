@@ -19,8 +19,7 @@
   <tbody>
     <% if @area.not_delivered.present? %>
       <% @area.not_delivered.each do |order| %>
-        <tr>
-
+        <tr class=" <%= priority?(order.priority) %> ">
           <td> <%= link_to order.client.name, order.client %> </td>
           <td> <%= order.created_at.to_date.to_formatted_s(:iso8601) %> </td>
           <td> <%= order.direction %> </td>
