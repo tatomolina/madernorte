@@ -1,53 +1,52 @@
 <%= simple_form_for @order do |form| %>
 
-<div>
-  <div>
-    <div>
-      <%= form.association :client, label: "Cliente" %>
-      <hr>
-      <%= form.input :direction, label: "Direccion" %>
-      <%= form.association :area, label: "Zona" %>
-      <%= form.input :phone, label: "Telefono" %>
-      <%= form.input :phone_reference, label: "Referencia del telefono" %>
-      <%= form.input :observations, label: "Observaciones" %>
-      <hr>
-      <%= form.association :priority, label: "Prioridad", selected: 1 %>
-
-
-      <table class="table table-striped">
-        <thead>
-          <tr>
-            <th></th>
-            <th>Piezas</th>
-            <th>Ancho</th>
-            <th>cm</th>
-            <th class="measure">Alto</th>
-            <th>cm</th>
-            <th class="measure-long">Largo</th>
-            <th>Descripcion</th>
-            <th>Procesado</th>
-            <th>Entregado</th>
-            <th>Facturado</th>
-            <th>Procesar</th>
-          </tr>
-        </thead>
-
-        <tbody class="articles">
-          <%= form.simple_fields_for :articles do |form_builder| %>
-            <%= render 'article_fields', f:  form_builder %>
-          <% end %>
-        </tbody>
-
-      </table>
-      <%= link_to_add_association "Agregar Articulo", form, :articles, class: "btn btn-outline-primary",
-      data: { association_insertion_node: ".articles", association_insertion_method: :append } %>
-
-      <br/>
-
-      <div class="row justify-content-center">
-        <%= form.button :submit, class: "btn btn-outline-success"  %>
-      </div>
+<div class="form-group">
+  <div class="row">
+    <div class="col">
+      <%= form.association :client, label: "Cliente", class: "form-control" %>
+      <%= form.input :phone, label: "Telefono", class: "form-control" %>
+      <%= form.input :phone_reference, label: "Referencia del telefono", class: "form-control" %>
+      <%= form.association :priority, label: "Prioridad", selected: 1, class: "form-control" %>
     </div>
+    <div class="col">
+    <%= form.input :direction, label: "Direccion", class: "form-control" %>
+    <%= form.association :area, label: "Zona", class: "form-control" %>
+    <%= form.input :observations, label: "Observaciones", class: "form-control" %>
+  </div>
+</div>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th></th>
+        <th>Piezas</th>
+        <th>Ancho</th>
+        <th>cm</th>
+        <th class="measure">Alto</th>
+        <th>cm</th>
+        <th class="measure-long">Largo</th>
+        <th>Descripcion</th>
+        <th>Procesado</th>
+        <th>Entregado</th>
+        <th>Facturado</th>
+        <th>Procesar</th>
+      </tr>
+    </thead>
+
+    <tbody class="articles">
+      <%= form.simple_fields_for :articles do |form_builder| %>
+        <%= render 'article_fields', f:  form_builder %>
+      <% end %>
+    </tbody>
+
+  </table>
+  <%= link_to_add_association "Agregar Articulo", form, :articles, class: "btn btn-outline-primary",
+  data: { association_insertion_node: ".articles", association_insertion_method: :append } %>
+
+  <br/>
+
+  <div class="row justify-content-center">
+    <%= form.button :submit, class: "btn btn-outline-success"  %>
   </div>
 </div>
 

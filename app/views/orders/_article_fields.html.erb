@@ -1,14 +1,14 @@
 <tr class="nested-fields">
   <td> <%= link_to_remove_association "Eliminar articulo", f, class: "btn btn-outline-danger" %> </td>
-  <td> <%= f.input :quantity,                 label: false %> </td>
-  <td> <%= f.input :width,                    label: false %> </td>
-  <td> <%= f.input :width_cm, as: :boolean,   label: false %> </td>
-  <td> <%= f.input :height,                   label: false %> </td>
-  <td> <%= f.input :height_cm, as: :boolean,  label: false %> </td>
-  <td> <%= f.input :long,                     label: false %> </td>
-  <td> <%= f.input :description,              label: false %> </td>
-  <td> <%= f.input :done, as: :boolean,       label: false %> </td>
-  <td> <%= f.input :delivered, as: :boolean,  label: false %> </td>
-  <td> <%= f.input :invoiced, as: :boolean,   label: false %> </td>
-  <td> <%= f.input :process, as: :boolean,    label: false %> </td>
+  <td> <%= f.input :quantity,                   label: false, class: "form-control" %> </td>
+  <td> <%= f.input :width,                      label: false, class: "form-control" %> </td>
+  <td> <%= f.input :width_cm, as: :boolean,     label: false, class: "form-check-input" %> </td>
+  <td> <%= f.input :height,                     label: false, class: "form-control" %> </td>
+  <td> <%= f.input :height_cm, as: :boolean,    label: false, class: "form-check-input" %> </td>
+  <td> <%= f.input :long,                       label: false, class: "form-control" %> </td>
+  <td> <%= f.input :description,                label: false, class: "form-control" %> </td>
+  <td> <%= f.input :done, as: :boolean,         label: false, class: "form-check-input" %> </td>
+  <td> <%= f.input :delivered, as: :boolean,    label: false, class: "form-check-input" %> </td>
+  <td> <%= f.input :invoiced, as: :boolean,     label: false, class: "form-check-input" %> </td>
+  <td> <%= f.input :process, as: :boolean,      label: false, class: "form-check-input" %> </td>
 </tr>

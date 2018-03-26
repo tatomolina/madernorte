@@ -1,6 +1,6 @@
 <%= simple_form_for @order do |form| %>
 
-<div>
+<div class="form-group">
   <h4> Pedido N°: <%= @order.id %> </h4>
   <h5> Fecha: <%= @order.created_at.to_date.to_formatted_s(:iso8601) %> </h5>
   <h5> Cliente: <%= @order.client.name %> </h5>

@@ -1,10 +1,9 @@
 <%= simple_form_for @area do |form| %>
-
-<div class="row">
-  <div class="col-md-6 col-md-offset-3">
-    <div class="form-group">
-      <%= form.input :name, label: "Nombre: ", class: "form-control text-center" %>
-      <br/>
+<div class="authform">
+  <div class="form-group">
+    <%= form.input :name, label: "Nombre: ", class: "form-control" %>
+    <br/>
+    <div class="row justify-content-center">
       <%= form.button :submit, class: "btn btn-outline-success" %>
     </div>
   </div>
