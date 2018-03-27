@@ -32,7 +32,11 @@
 </table>
 <%= paginate @orders %>
 <div class="row justify-content-center">
+  <% if policy(Order).new? %>
+    <%= link_to 'Nuevo Pedido', new_order_path, class: "btn btn-outline-primary" %>
+  <% end %>
+  &nbsp;
   <% if policy(@client).edit? %>
-    <%= link_to "Editar", edit_client_path(@client), class: "btn btn-outline-primary" %>
+    <%= link_to "Editar Cliente", edit_client_path(@client), class: "btn btn-outline-primary" %>
   <% end %>
 </div>
