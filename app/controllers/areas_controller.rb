@@ -7,6 +7,7 @@ class AreasController < ApplicationController
 
   def show
     @area = Area.find(params[:id])
+    authorize @area
   end
 
   def new

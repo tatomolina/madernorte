@@ -4,7 +4,7 @@
 <br>
 <div>
   <div>
-      <table class="table table-striped">
+      <table class="table table-bordered">
         <thead class="thead-dark">
           <tr>
             <th scope="col">Nombre</th>
@@ -24,10 +24,5 @@
           <% end %>
         </tbody>
       </table>
-    <div class="row justify-content-center">
-      <% if policy(Client).new? %>
-        <%= link_to 'Nueva Zona', new_area_path, class: "btn btn-outline-primary" %>
-      <% end %>
-    </div>
   </div>
 </div>
