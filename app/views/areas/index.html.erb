@@ -9,6 +9,7 @@
           <tr>
             <th scope="col">Nombre</th>
             <th scope="col">Pedidos a Entregar</th>
+            <th scope="col">Pedidos Hechos</th>
           </tr>
         </thead>
         <tbody>
@@ -19,6 +20,7 @@
                   <%= link_to area.name, area %>
                 </td>
                 <td> <%= area.not_delivered.count %> </td>
+                <td> <%= area.not_delivered_and_done.count %> </td>
               </tr>
             <% end %>
           <% end %>
