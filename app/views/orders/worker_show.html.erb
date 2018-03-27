@@ -22,16 +22,16 @@
     <% if @order.articles.present? %>
       <% @order.to_process.each do |article| %>
         <tr>
-          <td> <%= sprintf("%g", article.quantity) %> </td>
+          <td> <%= article.quantity %> </td>
           <td>
-            <%= sprintf("%g", article.width) %>
+            <%= article.width %>
             <% if(article.width_cm) %>
               cm
             <% end %>
           </td>
           <td>x</td>
           <td>
-            <%= sprintf("%g", article.height) %>
+            <%= article.height %>
             <% if(article.height_cm) %>
               cm
             <% end %>
@@ -40,7 +40,7 @@
           <% if(!article.long.nil?) %>
             <td>x</td>
             <td>
-              <%= sprintf("%g", article.long) %>
+              <%= article.long %>
             </td>
           <% else %>
             <td></td>
