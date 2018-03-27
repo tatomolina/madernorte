@@ -1,0 +1,11 @@
+<%= simple_form_for @note do |form| %>
+<div class="authform">
+  <div class="form-group">
+    <%= form.input :description, label: "Descripcion", class: "form-control text-center" %>
+    <br/>
+    <div class="row justify-content-center">
+      <%= form.button :submit, class: "btn btn-outline-success" %>
+    </div>
+  </div>
+</div>
+<% end %>

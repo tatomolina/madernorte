@@ -1,0 +1,43 @@
+<div class="row justify-content-center">
+  <h1 class"h1">Notas</h1>
+</div>
+<br>
+<div>
+
+  <table class="table table-bordered">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Fecha</th>
+        <th scope="col">Descripcion</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% if @notes.present? %>
+        <% @notes.each do |note| %>
+          <tr>
+            <td> <%= note.created_at.to_date.to_formatted_s(:iso8601) %> </td>
+            <td> <%= note.description %> </td>
+            <td>
+              <% if policy(note).edit? %>
+                <%= link_to "Editar", edit_note_path(note), class:"btn btn-default" %>
+              <% end %>
+              <% if policy(note).destroy? %>
+              <%= link_to 'Eliminar', note_path(note), method: :delete,
+              class: "btn btn-default", data: {confirm: 'Estas seguro?'} %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+  <div class="row justify-content-center">
+    <%= paginate @notes %>
+  </div>
+  <div class="row justify-content-center">
+    <% if policy(Note).new? %>
+      <%= link_to 'Nueva Nota', new_note_path, class: "btn btn-outline-primary" %>
+    <% end %>
+  </div>
+</div>

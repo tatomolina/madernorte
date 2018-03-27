@@ -47,10 +47,10 @@ class ClientsController < ApplicationController
       flash[:notice] = "Pedido actualizado correctamente"
       redirect_to client_path(params[:id])
     else
-      flash[:alert] = "#{@order.errors.count} error no permitio actualizar este cliente: "
-      @order.errors.full_messages.each do |msg|
+      flash[:alert] = "#{@client.errors.count} error no permitio actualizar este cliente: "
+      @client.errors.full_messages.each do |msg|
         flash[:alert] << "#{msg}"
-        flash[:alert] << ", " unless @order.errors.full_messages.last == msg
+        flash[:alert] << ", " unless @client.errors.full_messages.last == msg
       end
       render 'edit'
     end

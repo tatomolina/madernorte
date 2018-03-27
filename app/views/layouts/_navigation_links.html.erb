@@ -12,6 +12,11 @@
       <%= link_to "Reparto", areas_path, class: "nav-link #{current_class?(areas_path)}" %>
     </li>
   <% end %>
+  <% if policy(Note).index?%>
+    <li class="nav-item">
+      <%= link_to "Notas", notes_path, class: "nav-link #{current_class?(notes_path)}" %>
+    </li>
+  <% end %>
   <% if current_user.has_role? :admin %>
     <%= link_to "Admin", rails_admin_path, class: "nav-link" %>
   <% end %>

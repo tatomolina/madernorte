@@ -45,10 +45,10 @@ class AreasController < ApplicationController
       flash[:notice] = "Area actualizada correctamente"
       redirect_to area_path(params[:id])
     else
-      flash[:alert] = "#{@order.errors.count} error no permitio actualizar esta areae: "
-      @order.errors.full_messages.each do |msg|
+      flash[:alert] = "#{@area.errors.count} error no permitio actualizar esta areae: "
+      @area.errors.full_messages.each do |msg|
         flash[:alert] << "#{msg}"
-        flash[:alert] << ", " unless @order.errors.full_messages.last == msg
+        flash[:alert] << ", " unless @area.errors.full_messages.last == msg
       end
       render 'edit'
     end

@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   devise_for :users
   resources :clients, only: [:index, :show, :new, :create, :edit, :update]
   resources :areas, only: [:index, :show]
+  resources :notes, only: [:index, :new, :create, :edit, :update, :destroy]
   resources :orders
   get '/order/:id/worker_edit', to: 'orders#worker_edit', as: 'worker_order_edit'
   get '/order/:id/worker_show', to: 'orders#worker_show', as: 'worker_order_show'
