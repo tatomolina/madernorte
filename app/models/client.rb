@@ -10,4 +10,8 @@ class Client < ApplicationRecord
       order(:name)
     end
   end
+
+  def orders_not_delivered
+    self.orders.select{|x| !(x.delivered?) }
+  end
 end

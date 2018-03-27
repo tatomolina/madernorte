@@ -13,6 +13,14 @@ class Order < ApplicationRecord
 
   resourcify
 
+  def self.not_completed
+    self.all.order(created_at: :desc).select { |x| !x.done? || !x.delivered? || !x.invoiced? }
+  end
+
+  def self.worker_not_completed
+    self.all.order(priority_id: :desc, created_at: :desc).select { |x| (!x.done? || !x.delivered?) && x.process? }
+  end
+
   def reject_posts(attributes)
     attributes['quantity'].blank? && attributes['width'].blank? && attributes['height'].blank?
   end

@@ -1,19 +1,17 @@
 class OrdersController < ApplicationController
 
   def index
-    @orders = Order.all.order(created_at: :desc)
-    @orders = @orders.select { |x| x.done? == false || x.delivered? == false || x.invoiced? == false }
     if (current_user.has_role?(:worker))
       redirect_to worker_order_index_path
     end
+    @orders = Order.not_completed
     @orders = Kaminari.paginate_array(@orders).page(params[:page]).per(10)
     authorize Order
   end
 
   def worker_index
     # Only show him the orders that need to be precesed
-    @orders = Order.all.order(created_at: :desc)
-    @orders = @orders.select { |x| (x.done? == false || x.delivered? == false) && x.process? }
+    @orders = Order.worker_not_completed
     @orders = Kaminari.paginate_array(@orders).page(params[:page]).per(10)
     authorize Order
   end
