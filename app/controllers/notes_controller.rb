@@ -38,7 +38,7 @@ class NotesController < ApplicationController
 
     if @note.update(note_params)
       flash[:notice] = "Note actualizada correctamente"
-      redirect_to note_path(params[:id])
+      redirect_to notes_path
     else
       flash[:alert] = "#{@note.errors.count} error no permitio actualizar esta notee: "
       @note.errors.full_messages.each do |msg|
@@ -47,6 +47,7 @@ class NotesController < ApplicationController
       end
       render 'edit'
     end
+
   end
 
   def destroy
