@@ -18,7 +18,7 @@ class Order < ApplicationRecord
   end
 
   def self.worker_not_completed
-    self.all.order(priority_id: :desc, created_at: :desc).select { |x| (!x.done? || !x.delivered?) && x.process? }
+    self.all.order(priority_id: :desc, created_at: :desc).select { |x| (!x.done?) && x.process? }
   end
 
   def reject_posts(attributes)

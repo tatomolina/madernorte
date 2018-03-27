@@ -10,7 +10,6 @@
             <th scope="col">Cliente</th>
             <th scope="col">Fecha</th>
             <th scope="col">Procesado</th>
-            <th scope="col">Entregado</th>
             <th scope="col"></th>
           </tr>
         </thead>
@@ -22,7 +21,6 @@
                 <td> <%= order.created_at.to_date.to_formatted_s(:iso8601) %> </td>
 
                 <td><%= check_box "order", "done?", {:checked => order.done?, :disabled => true}%></td>
-                <td><%= check_box "order", "delivered?", {:checked => order.delivered?, :disabled => true}%></td>
 
                 <td>
                   <%= link_to "Ver", order_path(order) %>
