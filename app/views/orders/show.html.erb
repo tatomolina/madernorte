@@ -17,62 +17,91 @@
 </div>
 <hr>
 
-<table class="table table-bordered">
-  <thead class="thead-dark">
-    <tr>
-      <th scope="col">Piezas</th>
-      <th scope="col">Ancho</th>
-      <th>x</th>
-      <th scope="col">Alto</th>
-      <th>x</th>
-      <th scope="col">Largo</th>
-      <th scope="col">Descripcion</th>
-      <th scope="col">Detalles</th>
-      <th scope="col">Procesado</th>
-      <th scope="col">Entregado</th>
-      <th scope="col">Facturado</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% if @order.articles.present? %>
-      <% @order.articles.each do |article| %>
-        <tr>
-          <td> <%= article.quantity %> </td>
-          <td>
-            <%= article.width %>
-            <% if article.width_cm %>
-              cm
-            <% end %>
-          </td>
-          <td>x</td>
-          <td>
-            <%= article.height %>
-            <% if article.height_cm %>
-              cm
-            <% end %>
-          </td>
-          <!-- Long could be nil so to prevent crash -->
-          <% if !article.long.nil? %>
+<% if @order.articles.present? %>
+  <table class="table table-bordered">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Piezas</th>
+        <th scope="col">Ancho</th>
+        <th>x</th>
+        <th scope="col">Alto</th>
+        <th>x</th>
+        <th scope="col">Largo</th>
+        <th scope="col" class="description">Descripcion</th>
+        <th scope="col" class="details">Detalles</th>
+        <th scope="col">Procesado</th>
+        <th scope="col">Entregado</th>
+        <th scope="col">Facturado</th>
+      </tr>
+    </thead>
+    <tbody>
+        <% @order.articles.each do |article| %>
+          <tr>
+            <td> <%= article.quantity %> </td>
+            <td>
+              <%= article.width %>
+              <% if article.width_cm %>
+                cm
+              <% end %>
+            </td>
             <td>x</td>
             <td>
-              <%= article.long %>
+              <%= article.height %>
+              <% if article.height_cm %>
+                cm
+              <% end %>
             </td>
-          <% else %>
-            <td></td>
-            <td></td>
-          <% end %>
-          <td> <%= article.description %> </td>
-          <td> <%= article.details %> </td>
+            <!-- Long could be nil so to prevent crash -->
+            <% if !article.long.nil? %>
+              <td>x</td>
+              <td>
+                <%= article.long %>
+              </td>
+            <% else %>
+              <td></td>
+              <td></td>
+            <% end %>
+            <td> <%= article.description %> </td>
+            <td> <%= article.details %> </td>
 
-          <td><%= check_box "article", "done", {:checked => article.done?, :disabled => true} %></td>
-          <td><%= check_box "article", "delivered", {:checked => article.delivered?, :disabled => true }%></td>
-          <td><%= check_box "article", "invoiced", {:checked => article.invoiced?, :disabled => true} %></td>
+            <td><%= check_box "article", "done", {:checked => article.done?, :disabled => true} %></td>
+            <td><%= check_box "article", "delivered", {:checked => article.delivered?, :disabled => true }%></td>
+            <td><%= check_box "article", "invoiced", {:checked => article.invoiced?, :disabled => true} %></td>
 
-        </tr>
-      <% end %>
-    <% end %>
-  </tbody>
-</table>
+          </tr>
+        <% end %>
+    </tbody>
+  </table>
+<% end %>
+
+<% if @order.common_articles.present? %>
+  <table class="table table-bordered">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Piezas</th>
+        <th scope="col" class="common-description">Descripcion</th>
+        <th scope="col" class="details">Detalles</th>
+        <th scope="col">Procesado</th>
+        <th scope="col">Entregado</th>
+        <th scope="col">Facturado</th>
+      </tr>
+    </thead>
+    <tbody>
+        <% @order.common_articles.each do |article| %>
+          <tr>
+            <td> <%= article.quantity %> </td>
+            <td> <%= article.description %> </td>
+            <td> <%= article.details %> </td>
+
+            <td><%= check_box "article", "done", {:checked => article.done?, :disabled => true} %></td>
+            <td><%= check_box "article", "delivered", {:checked => article.delivered?, :disabled => true }%></td>
+            <td><%= check_box "article", "invoiced", {:checked => article.invoiced?, :disabled => true} %></td>
+
+          </tr>
+        <% end %>
+    </tbody>
+  </table>
+<% end %>
 
 <div class="row justify-content-center">
   <%= link_to "Imprimir", "#", onclick: "window.print();return false;", class:"btn btn-outline-success" %>

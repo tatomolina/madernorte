@@ -10,6 +10,9 @@ class Order < ApplicationRecord
   has_many :articles, dependent: :destroy, inverse_of: :order
   accepts_nested_attributes_for :articles, allow_destroy: true,
    reject_if: :reject_posts
+  has_many :common_articles, dependent: :destroy, inverse_of: :order
+  accepts_nested_attributes_for :common_articles, allow_destroy: true,
+   reject_if: :reject_posts
 
   resourcify
 
@@ -26,22 +29,26 @@ class Order < ApplicationRecord
   end
 
   def done?
-    self.articles.select{|x| x.done }.count == self.articles.count
+    ((self.articles.select{|x| x.done }.count == self.articles.count) && (self.common_articles.select{|x| x.done }.count == self.common_articles.count))
   end
 
   def delivered?
-    self.articles.select{|x| x.delivered }.count == self.articles.count
+    ((self.articles.select{|x| x.delivered }.count == self.articles.count) && (self.common_articles.select{|x| x.delivered }.count == self.common_articles.count))
   end
 
   def invoiced?
-    self.articles.select{|x| x.invoiced }.count == self.articles.count
+    ((self.articles.select{|x| x.invoiced }.count == self.articles.count) && (self.common_articles.select{|x| x.invoiced }.count == self.common_articles.count))
   end
 
   def process?
-    self.articles.select{|x| x.process }.count >= 1
+    ((self.articles.select{|x| x.process }.count >= 1) || (self.common_articles.select{|x| x.process }.count >= 1))
   end
 
   def to_process
     self.articles.select{|x| x.process }
+  end
+
+  def common_to_process
+    self.common_articles.select{|x| x.process }
   end
 end

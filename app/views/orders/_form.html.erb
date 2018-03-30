@@ -27,8 +27,8 @@
     <thead>
       <tr>
         <th></th>
-        <th>Piezas</th>
-        <th>Ancho</th>
+        <th class="measure">Piezas</th>
+        <th class="measure">Ancho</th>
         <th>cm</th>
         <th class="measure">Alto</th>
         <th>cm</th>
@@ -48,8 +48,32 @@
     </tbody>
 
   </table>
-  <%= link_to_add_association "Agregar Articulo", form, :articles, class: "btn btn-outline-primary",
+
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th></th>
+        <th class="measure">Piezas</th>
+        <th class="common-description">Descripcion</th>
+        <th>Procesado</th>
+        <th>Entregado</th>
+        <th>Facturado</th>
+        <th>Procesar</th>
+      </tr>
+    </thead>
+
+    <tbody class="common_articles">
+      <%= form.simple_fields_for :common_articles do |form_builder| %>
+        <%= render 'common_article_fields', f:  form_builder %>
+      <% end %>
+    </tbody>
+
+  </table>
+  <%= link_to_add_association "Agregar Madera", form, :articles, class: "btn btn-outline-primary",
   data: { association_insertion_node: ".articles", association_insertion_method: :append } %>
+
+  <%= link_to_add_association "Agregar Articulo", form, :common_articles, class: "btn btn-outline-warning",
+  data: { association_insertion_node: ".common_articles", association_insertion_method: :append } %>
 
   <br/>
 

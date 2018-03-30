@@ -3,61 +3,89 @@
 <h5> Cliente: <%= @order.client.name %> </h5>
 <hr>
 
-<table class="table table-bordered">
-  <thead class="thead-dark">
-    <tr>
-      <th scope="col">Piezas</th>
-      <th scope="col">Ancho</th>
-      <th>x</th>
-      <th scope="col">Alto</th>
-      <th>x</th>
-      <th scope="col">Largo</th>
-      <th scope="col">Descripcion</th>
-      <th scope="col">Detalles</th>
-      <th scope="col">Procesado</th>
-      <th scope="col">Entregado</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% if @order.articles.present? %>
-      <% @order.to_process.each do |article| %>
-        <tr>
-          <td> <%= article.quantity %> </td>
-          <td>
-            <%= article.width %>
-            <% if(article.width_cm) %>
-              cm
-            <% end %>
-          </td>
-          <td>x</td>
-          <td>
-            <%= article.height %>
-            <% if(article.height_cm) %>
-              cm
-            <% end %>
-          </td>
-          <!-- Long could be nil so to prevent crash -->
-          <% if(!article.long.nil?) %>
+<% if @order.to_process.count >= 1 %>
+  <table class="table table-bordered">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Piezas</th>
+        <th scope="col">Ancho</th>
+        <th>x</th>
+        <th scope="col">Alto</th>
+        <th>x</th>
+        <th scope="col">Largo</th>
+        <th scope="col">Descripcion</th>
+        <th scope="col">Detalles</th>
+        <th scope="col">Procesado</th>
+        <th scope="col">Entregado</th>
+      </tr>
+    </thead>
+    <tbody>
+        <% @order.to_process.each do |article| %>
+          <tr>
+            <td> <%= article.quantity %> </td>
+            <td>
+              <%= article.width %>
+              <% if(article.width_cm) %>
+                cm
+              <% end %>
+            </td>
             <td>x</td>
             <td>
-              <%= article.long %>
+              <%= article.height %>
+              <% if(article.height_cm) %>
+                cm
+              <% end %>
             </td>
-          <% else %>
-            <td></td>
-            <td></td>
-          <% end %>
-          <td> <%= article.description %> </td>
-          <td> <%= article.details %> </td>
+            <!-- Long could be nil so to prevent crash -->
+            <% if(!article.long.nil?) %>
+              <td>x</td>
+              <td>
+                <%= article.long %>
+              </td>
+            <% else %>
+              <td></td>
+              <td></td>
+            <% end %>
+            <td> <%= article.description %> </td>
+            <td> <%= article.details %> </td>
 
-          <td><%= check_box "article", "done", {:checked => article.done?, :disabled => true} %></td>
-          <td><%= check_box "article", "delivered", {:checked => article.delivered?, :disabled => true }%></td>
+            <td><%= check_box "article", "done", {:checked => article.done?, :disabled => true} %></td>
+            <td><%= check_box "article", "delivered", {:checked => article.delivered?, :disabled => true }%></td>
 
-        </tr>
-      <% end %>
-    <% end %>
+          </tr>
+        <% end %>
 
-  </tbody>
-</table>
+    </tbody>
+  </table>
+<% end %>
+
+<% if @order.common_to_process.count >= 1 %>
+  <table class="table table-bordered">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Piezas</th>
+        <th scope="col">Descripcion</th>
+        <th scope="col">Detalles</th>
+        <th scope="col">Procesado</th>
+        <th scope="col">Entregado</th>
+      </tr>
+    </thead>
+    <tbody>
+        <% @order.common_to_process.each do |article| %>
+          <tr>
+            <td> <%= article.quantity %> </td>
+            <td> <%= article.description %> </td>
+            <td> <%= article.details %> </td>
+
+            <td><%= check_box "article", "done", {:checked => article.done?, :disabled => true} %></td>
+            <td><%= check_box "article", "delivered", {:checked => article.delivered?, :disabled => true }%></td>
+
+          </tr>
+        <% end %>
+
+    </tbody>
+  </table>
+<% end %>
 
 <div class="row justify-content-center">
   <% if policy(@order).edit? %>
