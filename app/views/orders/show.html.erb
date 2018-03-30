@@ -40,19 +40,19 @@
           <td> <%= article.quantity %> </td>
           <td>
             <%= article.width %>
-            <% if(article.width_cm) %>
+            <% if article.width_cm %>
               cm
             <% end %>
           </td>
           <td>x</td>
           <td>
             <%= article.height %>
-            <% if(article.height_cm) %>
+            <% if article.height_cm %>
               cm
             <% end %>
           </td>
           <!-- Long could be nil so to prevent crash -->
-          <% if(!article.long.nil?) %>
+          <% if !article.long.nil? %>
             <td>x</td>
             <td>
               <%= article.long %>
