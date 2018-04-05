@@ -28,27 +28,6 @@
   </table>
 <% end %>
 
-<% if @order.common_to_process.count >= 1 %>
-  <table class="table table-bordered">
-    <thead>
-      <tr>
-        <th class="measure">Cantidad</th>
-        <th class="common-description">Descripcion</th>
-        <th>Detalles</th>
-        <th>Procesado</th>
-        <th>Entregado</th>
-      </tr>
-    </thead>
-
-    <tbody class="common_articles">
-      <%= form.simple_fields_for :common_articles do |form_builder| %>
-        <%= render 'worker_common_article_fields', f:  form_builder %>
-      <% end %>
-    </tbody>
-
-  </table>
-<% end %>
-
   <br/>
 
   <div class="row justify-content-center">

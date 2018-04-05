@@ -10,9 +10,6 @@ class Order < ApplicationRecord
   has_many :articles, dependent: :destroy, inverse_of: :order
   accepts_nested_attributes_for :articles, allow_destroy: true,
    reject_if: :reject_posts
-  has_many :common_articles, dependent: :destroy, inverse_of: :order
-  accepts_nested_attributes_for :common_articles, allow_destroy: true,
-   reject_if: :reject_posts
 
   resourcify
 
@@ -48,7 +45,4 @@ class Order < ApplicationRecord
     self.articles.select{|x| x.process }
   end
 
-  def common_to_process
-    self.common_articles.select{|x| x.process }
-  end
 end
