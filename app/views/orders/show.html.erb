@@ -22,11 +22,6 @@
     <thead class="thead-dark">
       <tr>
         <th scope="col" class="quantity">Cantidad</th>
-        <th scope="col" class="measure-long">Ancho</th>
-        <th>x</th>
-        <th scope="col" class="measure-long">Alto</th>
-        <th>x</th>
-        <th scope="col">Largo</th>
         <th scope="col">Descripcion</th>
         <th scope="col" class="details">Detalles</th>
         <th scope="col" class="bools">Procesado</th>
@@ -38,29 +33,6 @@
         <% @order.articles.each do |article| %>
           <tr>
             <td> <%= article.quantity %> </td>
-            <td>
-              <%= article.width %>
-              <% if article.width_cm %>
-                cm
-              <% end %>
-            </td>
-            <td>x</td>
-            <td>
-              <%= article.height %>
-              <% if article.height_cm %>
-                cm
-              <% end %>
-            </td>
-            <!-- Long could be nil so to prevent crash -->
-            <% if !article.long.nil? %>
-              <td>x</td>
-              <td>
-                <%= article.long %>
-              </td>
-            <% else %>
-              <td></td>
-              <td></td>
-            <% end %>
             <td> <%= article.description %> </td>
             <td> <%= article.details %> </td>
 
