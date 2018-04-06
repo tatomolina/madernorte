@@ -1,2 +1,4 @@
-$('#new-client').modal('hide')
-location.reload();
+$("#new-client").modal('hide');
+$("#order_client_id").prepend(
+    '<option value="<%= @client.id %>"><%= @client.name %></option>'
+);

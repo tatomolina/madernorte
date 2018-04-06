@@ -3,7 +3,7 @@
 <div class="form-group">
   <div class="row">
     <div class="col">
-      <%= form.association :client, collection: Client.order('name ASC'), label: "Cliente", id:"client-select", class: "form-control mb-2 mr-sm-2" %>
+      <%= form.association :client, collection: Client.order('name ASC'), label: "Cliente", id:"client", class: "form-control mb-2 mr-sm-2" %>
 
       <!-- Button trigger modal -->
       <button type="button" class="btn btn-outline-primary mb-2" data-toggle="modal" data-target="#new-client">
