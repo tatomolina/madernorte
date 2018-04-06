@@ -23,8 +23,10 @@ class ClientsController < ApplicationController
 
     respond_to do |format|
       if @client.save
-        flash[:notice] = "Cliente creado correctamente"
-        format.html { redirect_to clients_path }
+        format.html {
+          flash[:notice] = "Cliente creado correctamente"
+          redirect_to clients_path
+        }
         format.js
       else
         flash[:alert] = "#{@client.errors.count} error no permitio crear este cliente: "
