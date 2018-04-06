@@ -51,6 +51,8 @@ class OrdersController < ApplicationController
         flash[:alert] << "#{msg}"
         flash[:alert] << ", " unless @order.errors.full_messages.last == msg
       end
+      @client = Client.new
+      authorize @client
       render 'new'
     end
   end
@@ -83,6 +85,8 @@ class OrdersController < ApplicationController
         flash[:alert] << "#{msg}"
         flash[:alert] << ", " unless @order.errors.full_messages.last == msg
       end
+      @client = Client.new
+      authorize @client
       render 'edit'
     end
   end
