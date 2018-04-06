@@ -32,6 +32,8 @@ class OrdersController < ApplicationController
   def new
     @order = Order.new
     @order.articles.build
+    @client = Client.new
+    authorize @client
     authorize @order
   end
 

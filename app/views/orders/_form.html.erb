@@ -3,7 +3,13 @@
 <div class="form-group">
   <div class="row">
     <div class="col">
-      <%= form.association :client, label: "Cliente", class: "form-control" %>
+      <%= form.association :client, label: "Cliente", id:"client-select", class: "form-control mb-2 mr-sm-2" %>
+
+      <!-- Button trigger modal -->
+      <button type="button" class="btn btn-outline-primary mb-2" data-toggle="modal" data-target="#new-client">
+        Nuevo Cliente
+      </button>
+
       <%= form.input :phone, label: "Telefono", class: "form-control" %>
       <%= form.input :phone_reference, label: "Referencia del telefono", class: "form-control" %>
     </div>
@@ -56,3 +62,5 @@
 </div>
 
 <% end %>
+
+<%= render 'clients/new_client' %>

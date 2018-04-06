@@ -21,16 +21,20 @@ class ClientsController < ApplicationController
     @client = Client.new(client_params)
     authorize @client
 
-    if @client.save
-      flash[:notice] = "Cliente creado correctamente"
-      redirect_to clients_path
-    else
-      flash[:alert] = "#{@client.errors.count} error no permitio crear este cliente: "
-      @client.errors.full_messages.each do |msg|
-        flash[:alert] << "#{msg}"
-        flash[:alert] << ", " unless @client.errors.full_messages.last == msg
+    respond_to do |format|
+      if @client.save
+        flash[:notice] = "Cliente creado correctamente"
+        format.html { redirect_to clients_path }
+        format.js
+      else
+        flash[:alert] = "#{@client.errors.count} error no permitio crear este cliente: "
+        @client.errors.full_messages.each do |msg|
+          flash[:alert] << "#{msg}"
+          flash[:alert] << ", " unless @client.errors.full_messages.last == msg
+        end
+        format.html { render 'new' }
+        format.js
       end
-      render 'new'
     end
   end
 
