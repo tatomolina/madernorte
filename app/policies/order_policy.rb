@@ -29,7 +29,7 @@ class OrderPolicy < ApplicationPolicy
   end
 
   def worker_edit?
-      (user.present?) && (user.has_role? :worker)
+    (user.present?) && (user.has_role? :worker)
   end
 
   def destroy?

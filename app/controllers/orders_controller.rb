@@ -58,10 +58,9 @@ class OrdersController < ApplicationController
   def edit
     @order = Order.find(params[:id])
     @order.articles.build
+    @client = Client.new
+    authorize @client
     authorize @order
-    if (current_user.has_role?(:worker))
-      redirect_to worker_order_edit_path
-    end
   end
 
   def worker_edit
