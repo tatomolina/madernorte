@@ -1,6 +1,14 @@
 <h4> Pedido N°: <%= @order.id %> </h4>
 <h5> Fecha: <%= @order.created_at.to_date.to_formatted_s(:iso8601) %> </h5>
-<h5> Cliente: <%= @order.client.name %> </h5>
+<h5>
+  Cliente:
+  <% if @order.common_client.present? %>
+    <%= @order.common_client %>
+  <% else %>
+    <%= @order.client.name %>
+  <% end %>
+</h5>
+
 <hr>
 
 <% if @order.to_process.count >= 1 %>

@@ -20,7 +20,11 @@
     <% if @area.not_delivered.present? %>
       <% @area.not_delivered.each do |order| %>
         <tr class=" <%= priority?(order.priority) %> ">
-          <td> <%= link_to order.client.name, order.client %> </td>
+          <% if order.common_client.present? %>
+            <td> <%= link_to order.common_client, order.client %> </td>
+          <% else %>
+            <td> <%= link_to order.client.name, order.client %> </td>
+          <% end %>
           <td> <%= order.created_at.to_date.to_formatted_s(:iso8601) %> </td>
           <td> <%= order.direction %> </td>
 

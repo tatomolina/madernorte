@@ -4,12 +4,13 @@
   <div class="row">
     <div class="col">
       <%= form.association :client, collection: Client.order('name ASC'), label: "Cliente", id:"client", class: "form-control mb-2 mr-sm-2" %>
-
       <!-- Button trigger modal -->
       <button type="button" class="btn btn-outline-primary mb-2" data-toggle="modal" data-target="#new-client">
         Nuevo Cliente
       </button>
-
+      <div id="common-client" style="display:none">
+        <%= form.input :common_client, label: "Nombre del Cliente"  %>
+      </div>
       <%= form.input :phone, label: "Telefono", class: "form-control" %>
       <%= form.input :phone_reference, label: "Referencia del telefono", class: "form-control" %>
     </div>

@@ -17,7 +17,11 @@
           <% if @orders.present? %>
             <% @orders.each do |order| %>
               <tr class=" <%= priority?(order.priority) %> ">
-                <td> <%= order.client.name %> </td>
+                <% if order.common_client.present? %>
+                  <td> <%= order.common_client %> </td>
+                <% else %>
+                  <td> <%= order.client.name %> </td>
+                <% end %>
                 <td> <%= order.created_at.to_date.to_formatted_s(:iso8601) %> </td>
 
                 <td><%= check_box "order", "done?", {:checked => order.done?, :disabled => true}%></td>

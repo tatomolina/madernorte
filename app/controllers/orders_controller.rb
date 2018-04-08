@@ -103,7 +103,7 @@ class OrdersController < ApplicationController
 
   def order_params
     params.require(:order).permit(:direction, :client_id, :area_id, :priority_id,
-        :vendor_id, :phone, :phone_reference, :observations,
+        :vendor_id, :phone, :phone_reference, :observations, :common_client,
       articles_attributes: [:id, :_destroy, :order_id, :quantity,
          :description, :done, :delivered, :invoiced, :process, :details])
   end
