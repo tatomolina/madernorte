@@ -5,7 +5,7 @@
   <h5> Fecha: <%= @order.created_at.to_date.to_formatted_s(:iso8601) %> </h5>
   <h5> Cliente: <%= @order.client.name %> </h5>
   <hr>
-<% if @order.to_process.count >= 1 %>
+
   <table class="table table-bordered">
     <thead>
       <tr>
@@ -23,7 +23,6 @@
       <% end %>
     </tbody>
   </table>
-<% end %>
 
   <br/>
 
