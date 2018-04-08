@@ -21,8 +21,8 @@
   <tbody>
     <% @orders.each do |order| %>
       <tr>
-        <% if order.common_client.present? %>
-          <td> <%= link_to order.common_client, order.client %> </td>
+        <% if (order.common_client.present? && order.client.name == "Consumidor final") %>
+          <td> <%= order.common_client %> </td>
         <% end %>
         <td> <%= order.created_at.to_date.to_formatted_s(:iso8601) %> </td>
         <td> <%= order.direction %> </td>
