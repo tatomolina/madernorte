@@ -7,7 +7,7 @@
 <table class="table table-bordered">
   <thead class="thead-dark">
     <tr>
-      <% if @client.name == "Consumidor final" %>
+      <% if @client.name == "CONSUMIDOR FINAL" %>
         <th scope="col">Cliente</th>
       <% end %>
       <th scope="col">Fecha</th>
@@ -21,7 +21,7 @@
   <tbody>
     <% @orders.each do |order| %>
       <tr>
-        <% if (order.common_client.present? && order.client.name == "Consumidor final") %>
+        <% if (order.common_client.present? && order.client.name == "CONSUMIDOR FINAL") %>
           <td> <%= order.common_client %> </td>
         <% end %>
         <td> <%= order.created_at.to_date.to_formatted_s(:iso8601) %> </td>

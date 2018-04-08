@@ -17,7 +17,7 @@
           <% if @orders.present? %>
             <% @orders.each do |order| %>
               <tr class=" <%= priority?(order.priority) %> ">
-                <% if (order.common_client.present? && order.client.name == "Consumidor final") %>
+                <% if (order.common_client.present? && order.client.name == "CONSUMIDOR FINAL") %>
                   <td> <%= order.common_client %> </td>
                 <% else %>
                   <td> <%= order.client.name %> </td>

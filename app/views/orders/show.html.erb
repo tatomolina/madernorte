@@ -5,7 +5,7 @@
       <h5> Fecha: <%= @order.created_at.to_date.to_formatted_s(:iso8601) %> </h5>
       <h5>
         Cliente:
-        <% if (@order.common_client.present? && @order.client.name == "Consumidor final") %>
+        <% if (@order.common_client.present? && @order.client.name == "CONSUMIDOR FINAL") %>
           <%= @order.common_client %>
         <% else %>
           <%= link_to(@order.client.name, @order.client)%>

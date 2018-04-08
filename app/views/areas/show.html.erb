@@ -20,7 +20,7 @@
     <% if @area.not_delivered.present? %>
       <% @area.not_delivered.each do |order| %>
         <tr class=" <%= priority?(order.priority) %> ">
-          <% if (order.common_client.present? && order.client.name == "Consumidor final") %>
+          <% if (order.common_client.present? && order.client.name == "CONSUMIDOR FINAL") %>
             <td> <%= link_to order.common_client, order.client %> </td>
           <% else %>
             <td> <%= link_to order.client.name, order.client %> </td>
