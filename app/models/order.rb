@@ -1,6 +1,5 @@
 class Order < ApplicationRecord
   validates :client, presence: true
-  validates :direction, presence: true
   belongs_to :client
   belongs_to :area
   belongs_to :priority

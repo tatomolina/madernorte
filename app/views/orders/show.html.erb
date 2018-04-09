@@ -11,13 +11,19 @@
           <%= link_to(@order.client.name, @order.client)%>
         <% end %>
       </h5>
-      <h5> Telefono: <%= @order.phone %> </h5>
-      <h5> Referencia del telefono: <%= @order.phone_reference %> </h5>
+      <% if @order.phone.present?%>
+        <h5> Telefono: <%= @order.phone %> </h5>
+      <% end %>
+      <% if @order.phone_reference.present?%>
+        <h5> Referencia del telefono: <%= @order.phone_reference %> </h5>
+      <% end %>
     </div>
     <div class="col-4">
       <h5> Zona: <%= link_to @order.area.name, @order.area %> </h5>
       <h5> Direccion: <%= @order.direction %> </h5>
-      <h5> Observaciones: <%= @order.observations %> </h5>
+      <% if @order.observations.present?%>
+        <h5> Observaciones: <%= @order.observations %> </h5>
+      <% end %>
       <h5> Vendedor: <%= @order.vendor.name %> </h5>
     </div>
   </div>
