@@ -12,16 +12,16 @@ class Order < ApplicationRecord
 
   resourcify
 
+  def reject_posts(attributes)
+    attributes['quantity'].blank?
+  end
+
   def self.not_completed
-    self.all.order(created_at: :desc).select { |x| !x.done? || !x.delivered? || !x.invoiced? }
+    self.all.order(created_at: :desc).select { |x| !x.done? || !x.delivered? || !x.invoiced? || !x.payed? }
   end
 
   def self.worker_not_completed
     self.all.order(priority_id: :desc, created_at: :desc).select { |x| (!x.done?) && x.process? }
-  end
-
-  def reject_posts(attributes)
-    attributes['quantity'].blank? && attributes['width'].blank? && attributes['height'].blank?
   end
 
   def done?
