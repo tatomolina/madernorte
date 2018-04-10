@@ -13,6 +13,7 @@
       <th scope="col">Procesado</th>
       <th scope="col">Entregado</th>
       <th scope="col">Facturado</th>
+      <th scope="col">Pagado</th>
       <th scope="col"></th>
     </tr>
   </thead>
@@ -31,6 +32,7 @@
           <td><%= check_box "order", "done?", {:checked => order.done?, :disabled => true}%></td>
           <td><%= check_box "order", "delivered?", {:checked => order.delivered?, :disabled => true}%></td>
           <td><%= check_box "order", "invoiced?", {:checked => order.invoiced?, :disabled => true}%></td>
+          <td><%= check_box "order", "payed?", {:checked => order.payed?, :disabled => true}%></td>
 
           <td> <%= link_to "Ver", order_path(order) %> </td>
         </tr>

@@ -36,6 +36,10 @@ class Order < ApplicationRecord
     ((self.articles.select{|x| x.invoiced }.count == self.articles.count))
   end
 
+  def payed?
+    ((self.articles.select{|x| x.payed }.count == self.articles.count))
+  end
+
   def process?
     ((self.articles.select{|x| x.process }.count >= 1))
   end

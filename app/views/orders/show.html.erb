@@ -40,6 +40,7 @@
         <th scope="col" class="bools">Procesado</th>
         <th scope="col" class="bools">Entregado</th>
         <th scope="col" class="bools">Facturado</th>
+        <th scope="col" class="bools">Pagado</th>
       </tr>
     </thead>
     <tbody>
@@ -52,6 +53,7 @@
             <td><%= check_box "article", "done", {:checked => article.done?, :disabled => true} %></td>
             <td><%= check_box "article", "delivered", {:checked => article.delivered?, :disabled => true }%></td>
             <td><%= check_box "article", "invoiced", {:checked => article.invoiced?, :disabled => true} %></td>
+            <td><%= check_box "article", "payed", {:checked => article.payed?, :disabled => true} %></td>
 
           </tr>
         <% end %>
