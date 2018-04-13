@@ -16,6 +16,12 @@ class Order < ApplicationRecord
     attributes['quantity'].blank?
   end
 
+  def self.search(term)
+    if term
+      where('common_client ILIKE ?', "%#{term}%")
+    end
+  end
+
   def self.not_completed
     self.all.order(created_at: :desc).select { |x| !x.done? || !x.delivered? || !x.invoiced? || !x.payed? }
   end

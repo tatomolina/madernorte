@@ -22,7 +22,16 @@ worker = User.new(
 worker.add_role :worker
 worker.save!
 
-for i..15
-  Client.create!( name: "Cliente #{i}" )
-  i++
-end
+Client.create( name: "CONSUMIDOR FINAL" )
+
+Priority.create( name: "Normal" )
+Priority.create( name: "Media" )
+Priority.create( name: "Urgente" )
+
+Area.create( name: "Centro" )
+Area.create( name: "Vega" )
+Area.create( name: "Lolog" )
+
+Vendor.create( name: "Tato" )
+Vendor.create( name: "Edy" )
+Vendor.create( name: "Ste" )

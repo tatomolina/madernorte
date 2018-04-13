@@ -19,20 +19,32 @@
       </tr>
     </thead>
     <tbody>
-      <% if @clients.present? %>
-        <% @clients.each do |client| %>
-          <tr>
+      <% @result.each do |client| %>
+      <tr>
+        <% if client.try(:name).present? %>
             <td>
               <%= link_to client.name, client %>
             </td>
             <td> <%= client.orders.count %> </td>
             <td> <%= client.orders_not_delivered.count %> </td>
-          </tr>
+        <% else %>
+          <td>
+            <%= link_to client.common_client, client %>
+          </td>
+          <td> 1 </td>
+          <td>
+            <% if (client.done? && client.delivered?) %>
+              0
+            <% else %>
+              1
+            <% end %>
+          </td>
         <% end %>
+      </tr>
       <% end %>
     </tbody>
   </table>
   <div class="row justify-content-center">
-    <%= paginate @clients %>
+    <%= paginate @result %>
   </div>
 </div>

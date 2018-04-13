@@ -1,7 +1,14 @@
 class ClientsController < ApplicationController
 
   def index
-    @clients = Client.search(params[:term]).page(params[:page]).per(10)
+    @clients = Client.search(params[:term])
+    @orders = Order.search(params[:term])
+    if !@orders.nil?
+      @result = @clients + @orders
+      @result = Kaminari.paginate_array(@result).page(params[:page]).per(10)
+    else
+      @result = @clients.page(params[:page]).per(10)
+    end
     authorize Client
   end
 
