@@ -6,7 +6,6 @@ class OrdersController < ApplicationController
     end
     @orders = Order.not_completed
     @orders = Kaminari.paginate_array(@orders).page(params[:page]).per(10)
-    @delivery_item = current_delivery.delivery_items.new
     authorize Order
   end
 

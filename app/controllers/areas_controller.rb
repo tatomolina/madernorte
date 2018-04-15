@@ -7,6 +7,7 @@ class AreasController < ApplicationController
 
   def show
     @area = Area.find(params[:id])
+    @delivery_item = current_delivery.delivery_items.new
     authorize @area
   end
 
