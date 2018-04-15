@@ -14,4 +14,12 @@ module ApplicationHelper
       ''
     end
   end
+
+  def current_delivery
+    if !session[:delivery_id].nil?
+      Delivery.find(session[:delivery_id])
+    else
+      Delivery.new
+    end
+  end
 end

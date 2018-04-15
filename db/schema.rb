@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180410005608) do
+ActiveRecord::Schema.define(version: 20180415001503) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,6 +40,20 @@ ActiveRecord::Schema.define(version: 20180410005608) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "deliveries", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "delivery_items", force: :cascade do |t|
+    t.bigint "order_id"
+    t.bigint "delivery_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["delivery_id"], name: "index_delivery_items_on_delivery_id"
+    t.index ["order_id"], name: "index_delivery_items_on_order_id"
   end
 
   create_table "height_measures", force: :cascade do |t|
@@ -128,6 +142,8 @@ ActiveRecord::Schema.define(version: 20180410005608) do
   end
 
   add_foreign_key "articles", "orders"
+  add_foreign_key "delivery_items", "deliveries"
+  add_foreign_key "delivery_items", "orders"
   add_foreign_key "orders", "areas"
   add_foreign_key "orders", "clients"
   add_foreign_key "orders", "priorities"

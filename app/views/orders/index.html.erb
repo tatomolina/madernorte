@@ -35,7 +35,11 @@
                 <td><%= check_box "order", "payed?", {:checked => order.payed?, :disabled => true}%></td>
 
                 <td>
-                  <%= link_to "Ver", order_path(order) %>
+                  <%= link_to "Ver", order_path(order), class: "btn btn-outline-primary" %>
+                  <%= simple_form_for @delivery_item, remote: true do |f| %>
+                    <%= f.hidden_field :order_id, value: order.id %>
+                    <%= f.button :submit, "Reparto", class: "btn btn-outline-warning" %>
+                  <% end %>
                 </td>
               </tr>
             <% end %>
