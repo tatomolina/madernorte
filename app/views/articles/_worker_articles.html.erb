@@ -1,0 +1,26 @@
+<tr id="collapse<%= order.id %>" class="collapse article">
+  <td colspan="2">
+    <div id="table-wrapper">
+      <div id="table-scroll">
+        <table class="table table-bordered">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col" class="quantity">Cantidad</th>
+              <th scope="col" class="worker-description">Descripcion</th>
+              <th scope="col" class="worker-details">Detalles</th>
+            </tr>
+          </thead>
+          <tbody>
+              <% order.to_process.each do |article| %>
+                <tr>
+                  <td> <%= article.quantity %> </td>
+                  <td> <%= article.description %> </td>
+                  <td> <%= article.details %> </td>
+                </tr>
+              <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </td>
+</tr>

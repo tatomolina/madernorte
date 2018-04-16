@@ -18,6 +18,7 @@ class OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
+    @delivery_item = current_delivery.delivery_items.new
     authorize @order
     if (current_user.has_role?(:worker))
       redirect_to worker_order_show_path
@@ -105,6 +106,6 @@ class OrdersController < ApplicationController
     params.require(:order).permit(:direction, :client_id, :area_id, :priority_id,
         :vendor_id, :phone, :phone_reference, :observations, :common_client,
       articles_attributes: [:id, :_destroy, :order_id, :quantity,
-         :description, :details, :done, :delivered, :invoiced, :payed, :process])
+         :description, :details, :done, :delivered, :invoiced, :payed, :process, :on_delivery])
   end
 end

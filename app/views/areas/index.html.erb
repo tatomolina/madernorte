@@ -1,26 +1,24 @@
 <div class="row justify-content-center">
   <h1 class"h1">Zonas</h1>
 </div>
-<br>
+<hr>
 <div>
   <div>
       <table class="table table-bordered">
         <thead class="thead-dark">
           <tr>
             <th scope="col">Nombre</th>
-            <th scope="col">Pedidos a Entregar</th>
-            <th scope="col">Pedidos Hechos</th>
+            <th scope="col" class="text-center">Pedidos a Entregar</th>
+            <th scope="col" class="text-center">Pedidos Hechos</th>
           </tr>
         </thead>
         <tbody>
           <% if @areas.present? %>
             <% @areas.each do |area| %>
               <tr>
-                <td>
-                  <%= link_to area.name, area %>
-                </td>
-                <td> <%= area.not_delivered.count %> </td>
-                <td> <%= area.not_delivered_and_done.count %> </td>
+                <td> <h5> <%= link_to area.name, area %> </h5> </td>
+                <td class="text-center"> <%= area.not_delivered.count %> </td>
+                <td class="text-center"> <%= area.not_delivered_and_done.count %> </td>
               </tr>
             <% end %>
           <% end %>

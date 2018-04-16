@@ -1,40 +1,48 @@
-<% if @delivery_items.size > 0 %>
-  <table class="table table-bordered">
-    <thead class="thead-dark">
-      <tr>
-        <th scope="col">Cliente</th>
-        <th scope="col">Zona</th>
-        <th scope="col">Fecha</th>
-        <th scope="col">Procesado</th>
-        <th scope="col">Entregado</th>
-        <th scope="col">Facturado</th>
-        <th scope="col">Pagado</th>
-        <th scope="col"></th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @delivery_items.each do |item| %>
+<div class="cart-item">
+  <% if @delivery_items.size > 0 %>
+    <table class="table table-bordered">
+      <thead class="thead-dark">
         <tr>
-          <% if (item.order.common_client.present? && item.order.client.name == "CONSUMIDOR FINAL") %>
-            <td> <%= link_to item.order.common_client, item.order.client %> </td>
-          <% else %>
-            <td> <%= link_to item.order.client.name, item.order.client %> </td>
-          <% end %>
-          <td> <%= item.order.area.name %> </td>
-          <td> <%= item.order.created_at.to_date.to_formatted_s(:iso8601) %> </td>
-
-          <td><%= check_box "item.order", "done?", {:checked => item.order.done?, :disabled => true}%></td>
-          <td><%= check_box "item.order", "delivered?", {:checked => item.order.delivered?, :disabled => true}%></td>
-          <td><%= check_box "item.order", "invoiced?", {:checked => item.order.invoiced?, :disabled => true}%></td>
-          <td><%= check_box "item.order", "payed?", {:checked => item.order.payed?, :disabled => true}%></td>
-
-          <td>
-            <%= link_to "Eliminar", item, method: :delete, remtoe: true, class: "btn btn-outline-danger" %>
-          </td>
+          <th scope="col" class="client">Cliente</th>
+          <th scope="col">Zona</th>
+          <th scope="col" class="date">Fecha</th>
+          <th scope="col" class="bools-header">Procesado</th>
+          <th scope="col" class="bools-header">Entregado</th>
+          <th scope="col" class="bools-header">Facturado</th>
+          <th scope="col" class="bools-header">Pagado</th>
+          <th scope="col" class="view"></th>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
-<% else %>
+      </thead>
+      <tbody>
+        <% @delivery_items.each do |item| %>
+          <tr>
+            <% if (item.order.common_client.present? && item.order.client.name == "CONSUMIDOR FINAL") %>
+              <td> <%= link_to item.order.common_client, item.order.client %> </td>
+            <% else %>
+              <td> <%= link_to item.order.client.name, item.order.client %> </td>
+            <% end %>
+            <td> <%= item.order.area.name %> </td>
+            <td class="date"> <%= item.order.created_at.to_date.to_formatted_s(:iso8601) %> </td>
 
-<% end %>
+            <td class="bools"><%= check_box "item.order", "done?", {:checked => item.order.done?, :disabled => true}%></td>
+            <td class="bools"><%= check_box "item.order", "delivered?", {:checked => item.order.delivered?, :disabled => true}%></td>
+            <td class="bools"><%= check_box "item.order", "invoiced?", {:checked => item.order.invoiced?, :disabled => true}%></td>
+            <td class="bools"><%= check_box "item.order", "payed?", {:checked => item.order.payed?, :disabled => true}%></td>
+
+            <td class="view">
+              <%= link_to "Ver", order_path(item.order), class: "btn btn-outline-primary" %>
+              <%= link_to "Eliminar", item, method: :delete, remote: true, class: "btn btn-outline-danger" %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <div class="row justify-content-center">
+      <%= link_to "Listo", carts_done_path, class: "btn btn-outline-success" %>
+    </div>
+  <% else %>
+    <p class="text-center no-orders">
+      No hay Pedidios para repartir.
+    </p>
+  <% end %>
+</div>

@@ -1,35 +1,40 @@
 <div class="row justify-content-center">
   <h1 class"h1">Pedidos</h1>
 </div>
-<br>
+<hr>
 <div>
   <div>
       <table class="table table-bordered">
         <thead class="thead-dark">
           <tr>
-            <th scope="col">Cliente</th>
-            <th scope="col">Fecha</th>
-            <th scope="col">Procesado</th>
-            <th scope="col"></th>
+            <th scope="col" class="client">Cliente</th>
+            <th scope="col" >Fecha</th>
+            <th scope="col" class="view"></th>
           </tr>
         </thead>
         <tbody>
           <% if @orders.present? %>
             <% @orders.each do |order| %>
               <tr class=" <%= priority?(order.priority) %> ">
-                <% if (order.common_client.present? && order.client.name == "CONSUMIDOR FINAL") %>
-                  <td> <%= order.common_client %> </td>
-                <% else %>
-                  <td> <%= order.client.name %> </td>
-                <% end %>
+                <td>
+                  <h4>
+                    <% if (order.common_client.present? && order.client.name == "CONSUMIDOR FINAL") %>
+                      <%= order.common_client %>
+                    <% else %>
+                      <%= order.client.name %>
+                    <% end %>
+                  </h4>
+                </td>
                 <td> <%= order.created_at.to_date.to_formatted_s(:iso8601) %> </td>
 
-                <td><%= check_box "order", "done?", {:checked => order.done?, :disabled => true}%></td>
-
                 <td>
-                  <%= link_to "Ver", order_path(order) %>
+                  <button class="btn btn-outline-success" type="button" data-toggle="collapse" data-target="#collapse<%= order.id %>" aria-expanded="false" aria-controls="collapseExample">
+                    +
+                  </button>
+                  <%= link_to "Ver", order_path(order), class: "btn btn-outline-primary" %>
                 </td>
               </tr>
+              <%= render 'articles/worker_articles', order: order %>
             <% end %>
           <% end %>
         </tbody>

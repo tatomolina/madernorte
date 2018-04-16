@@ -9,6 +9,7 @@ $(document).on('turbolinks:load', function() {
     };
   });
 
+  // Check all
   $("#checkAllDone").on('change', function() {
     $(".order_articles_done").children().children().children().prop("checked", $(this).prop("checked"))
   });
@@ -28,4 +29,9 @@ $(document).on('turbolinks:load', function() {
   $("#checkAllProcess").on('change', function() {
     $(".order_articles_process").children().children().children().prop("checked", $(this).prop("checked"))
   });
+
+  $("#checkAllDelivery").on('change', function() {
+    $(".order_articles_on_delivery").children().children().children().prop("checked", $(this).prop("checked"))
+  });
+
 });

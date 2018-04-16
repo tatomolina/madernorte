@@ -47,6 +47,10 @@ class Order < ApplicationRecord
     ((self.articles.select{|x| x.payed }.count == self.articles.count))
   end
 
+  def on_delivery?
+    ((self.articles.select{|x| x.on_delivery }.count > 0))
+  end
+
   def process?
     ((self.articles.select{|x| x.process }.count >= 1))
   end

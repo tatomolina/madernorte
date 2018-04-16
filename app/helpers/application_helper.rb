@@ -15,6 +15,22 @@ module ApplicationHelper
     end
   end
 
+  def article_on_delivery?(article)
+    if ((true == article.on_delivery) && (false == article.delivered))
+      return 'table-success'
+    else
+      ''
+    end
+  end
+
+  def order_on_delivery?(order)
+    if ((true == order.on_delivery?) && (false == order.delivered?))
+      return 'table-success'
+    else
+      ''
+    end
+  end
+
   def current_delivery
     if !session[:delivery_id].nil?
       Delivery.find(session[:delivery_id])

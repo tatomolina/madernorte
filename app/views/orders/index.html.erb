@@ -1,41 +1,54 @@
 <div class="row justify-content-center">
   <h1 class"h1">Pedidos</h1>
 </div>
-<br>
+<hr>
 <div>
   <div>
       <table class="table table-bordered">
         <thead class="thead-dark">
           <tr>
-            <th scope="col">Cliente</th>
+            <th scope="col" class="client">Cliente</th>
             <th scope="col">Zona</th>
-            <th scope="col">Fecha</th>
-            <th scope="col">Procesado</th>
-            <th scope="col">Entregado</th>
-            <th scope="col">Facturado</th>
-            <th scope="col">Pagado</th>
-            <th scope="col"></th>
+            <th scope="col" class="date">Fecha</th>
+            <th scope="col" class="bools-header">Procesado</th>
+            <th scope="col" class="bools-header">Entregado</th>
+            <th scope="col" class="bools-header">Facturado</th>
+            <th scope="col" class="bools-header">Pagado</th>
+            <th scope="col" class="view"></th>
           </tr>
         </thead>
         <tbody>
           <% if @orders.present? %>
             <% @orders.each do |order| %>
-              <tr>
+
+            <tr>
+              <td>
+                <h4>
                 <% if (order.common_client.present? && order.client.name == "CONSUMIDOR FINAL") %>
-                  <td> <%= link_to order.common_client, order.client %> </td>
+                  <%= link_to order.common_client, order.client %>
                 <% else %>
-                  <td> <%= link_to order.client.name, order.client %> </td>
+                  <%= link_to order.client.name, order.client %>
                 <% end %>
-                <td> <%= order.area.name %> </td>
-                <td> <%= order.created_at.to_date.to_formatted_s(:iso8601) %> </td>
+              </h4>
+              </td>
+              <td> <%= order.area.name %> </td>
+              <td class="date"> <%= order.created_at.to_date.to_formatted_s(:iso8601) %> </td>
 
-                <td><%= check_box "order", "done?", {:checked => order.done?, :disabled => true}%></td>
-                <td><%= check_box "order", "delivered?", {:checked => order.delivered?, :disabled => true}%></td>
-                <td><%= check_box "order", "invoiced?", {:checked => order.invoiced?, :disabled => true}%></td>
-                <td><%= check_box "order", "payed?", {:checked => order.payed?, :disabled => true}%></td>
+              <td class="bools"><%= check_box "order", "done?", {:checked => order.done?, :disabled => true}%></td>
+              <td class="bools"><%= check_box "order", "delivered?", {:checked => order.delivered?, :disabled => true}%></td>
+              <td class="bools"><%= check_box "order", "invoiced?", {:checked => order.invoiced?, :disabled => true}%></td>
+              <td class="bools"><%= check_box "order", "payed?", {:checked => order.payed?, :disabled => true}%></td>
 
-                <td><%= link_to "Ver", order_path(order), class: "btn btn-outline-primary" %></td>
-              </tr>
+              <td class="text-center">
+                <button class="btn btn-outline-success" type="button" data-toggle="collapse" data-target="#collapse<%= order.id %>" aria-expanded="false" aria-controls="collapseExample">
+                  +
+                </button>
+                <%= link_to "Ver", order_path(order), class: "btn btn-outline-primary" %>
+              </td>
+            </tr>
+
+            <%= render 'articles/articles', order: order %>
+
             <% end %>
           <% end %>
 

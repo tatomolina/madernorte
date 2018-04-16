@@ -1,21 +1,20 @@
-<div class="row justify-content-center">
-  <h1 class"h1">Clientes</h1>
-</div>
 <div class="row justify-content-md-center">
-<%= form_tag(clients_path, method: :get, class: "form-inline") do %>
-<%= text_field_tag :term, params[:term], class: "form-control mr-sm-2" %>
-<%= submit_tag 'Buscar', name: nil, class: "btn btn-outline-success my-2 my-sm-0" %>
-<% end %>
+  <%= form_tag(clients_path, method: :get, class: "form-inline") do %>
+    <h1 class"h1">Clientes</h1>
+    &nbsp;
+    <%= text_field_tag :term, params[:term], class: "form-control mr-sm-2" %>
+    <%= submit_tag 'Buscar', name: nil, class: "btn btn-outline-success my-2 my-sm-0" %>
+  <% end %>
 </div>
-<br>
+<hr>
 <div>
 
   <table class="table table-bordered">
     <thead class="thead-dark">
       <tr>
         <th scope="col">Nombre</th>
-        <th scope="col">Cantidad de Pedidos</th>
-        <th scope="col">Pedidos Pendientes</th>
+        <th scope="col" class="text-center">Cantidad de Pedidos</th>
+        <th scope="col" class="text-center">Pedidos Pendientes</th>
       </tr>
     </thead>
     <tbody>
@@ -23,16 +22,20 @@
       <tr>
         <% if client.try(:name).present? %>
             <td>
-              <%= link_to client.name, client %>
+              <h6>
+                <%= link_to client.name, client %>
+              </h6>
             </td>
-            <td> <%= client.orders.count %> </td>
-            <td> <%= client.orders_not_delivered.count %> </td>
+            <td class="text-center"> <%= client.orders.count %> </td>
+            <td class="text-center"> <%= client.orders_not_delivered.count %> </td>
         <% else %>
           <td>
-            <%= link_to client.common_client, client %>
+            <h6>
+              <%= link_to client.common_client, client %>
+            </h6>
           </td>
-          <td> 1 </td>
-          <td>
+          <td class="text-center"> 1 </td>
+          <td class="text-center">
             <% if (client.done? && client.delivered?) %>
               0
             <% else %>

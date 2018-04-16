@@ -1,0 +1,31 @@
+
+<div class="row justify-content-center">
+  <h1 class"h1">Repartos</h1>
+</div>
+<hr>
+<div>
+
+  <table class="table table-bordered">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Fecha</th>
+        <th scope="col">Cantidad de Pedidos</th>
+        <th class="view"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @deliveries.each do |delivery| %>
+        <tr>
+          <td> <%= delivery.id %> </td>
+          <td> <%= delivery.created_at.to_date.to_formatted_s(:iso8601) %> </td>
+          <td> <%= delivery.delivery_items.count %> </td>
+          <td class="view"> <%= link_to "ver", delivery, class: "btn btn-outline-primary" %> </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <div class="row justify-content-center">
+    <%= paginate @deliveries %>
+  </div>
+</div>

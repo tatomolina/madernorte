@@ -28,8 +28,17 @@
     </li>
   <% end %>
   <% if policy(Area).index?%>
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle <%= current_class?(clients_path) %>" href=" <%= clients_path %> " id="navbarDropdown"
+        role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Reparto
+      </a>
+      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <%= link_to "Zonas", areas_path, class: "dropdown-item" %>
+        <%= link_to "Repartos", delivery_index_path, class: "dropdown-item" %>
+      </div>
+    </li>
     <li class="nav-item">
-      <%= link_to "Reparto", areas_path, class: "nav-link #{current_class?(areas_path)}" %>
     </li>
   <% end %>
   <% if policy(Note).index?%>

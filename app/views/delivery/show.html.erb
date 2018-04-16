@@ -1,0 +1,56 @@
+<div class="row justify-content-center">
+  <h1 class"h1">Numero de Pedido: <%= @delivery.id %></h1>
+</div>
+<hr>
+<div>
+  <div>
+      <table class="table table-bordered">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col" class="client">Cliente</th>
+            <th scope="col">Zona</th>
+            <th scope="col" class="date">Fecha</th>
+            <th scope="col" class="bools-header">Procesado</th>
+            <th scope="col" class="bools-header">Entregado</th>
+            <th scope="col" class="bools-header">Facturado</th>
+            <th scope="col" class="bools-header">Pagado</th>
+            <th scope="col" class="view"></th>
+          </tr>
+        </thead>
+        <tbody>
+            <% @delivery.delivery_items.each do |item| %>
+
+            <tr class=" <%= order_on_delivery?(item.order) %> ">
+              <td>
+                <h4>
+                <% if (item.order.common_client.present? && item.order.client.name == "CONSUMIDOR FINAL") %>
+                  <%= link_to item.order.common_client, item.order.client %>
+                <% else %>
+                  <%= link_to item.order.client.name, item.order.client %>
+                <% end %>
+              </h4>
+              </td>
+              <td> <%= item.order.area.name %> </td>
+              <td class="date"> <%= item.order.created_at.to_date.to_formatted_s(:iso8601) %> </td>
+
+              <td class="bools"><%= check_box "item.order", "done?", {:checked => item.order.done?, :disabled => true}%></td>
+              <td class="bools"><%= check_box "item.order", "delivered?", {:checked => item.order.delivered?, :disabled => true}%></td>
+              <td class="bools"><%= check_box "item.order", "invoiced?", {:checked => item.order.invoiced?, :disabled => true}%></td>
+              <td class="bools"><%= check_box "item.order", "payed?", {:checked => item.order.payed?, :disabled => true}%></td>
+
+              <td class="text-center">
+                <button class="btn btn-outline-success" type="button" data-toggle="collapse" data-target="#collapse<%= item.order.id %>" aria-expanded="false" aria-controls="collapseExample">
+                  +
+                </button>
+                <%= link_to "Ver", order_path(item.order), class: "btn btn-outline-primary" %>
+              </td>
+            </tr>
+
+            <%= render 'articles/articles', order: item.order %>
+
+            <% end %>
+
+        </tbody>
+      </table>
+  </div>
+</div>
