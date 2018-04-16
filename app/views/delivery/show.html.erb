@@ -22,13 +22,11 @@
 
             <tr class=" <%= order_on_delivery?(item.order) %> ">
               <td>
-                <h4>
                 <% if (item.order.common_client.present? && item.order.client.name == "CONSUMIDOR FINAL") %>
                   <%= link_to item.order.common_client, item.order.client %>
                 <% else %>
                   <%= link_to item.order.client.name, item.order.client %>
                 <% end %>
-              </h4>
               </td>
               <td> <%= item.order.area.name %> </td>
               <td class="date"> <%= item.order.created_at.to_date.to_formatted_s(:iso8601) %> </td>

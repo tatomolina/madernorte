@@ -1,7 +1,7 @@
 <% if user_signed_in? %>
 <% if policy(Order).new? %>
   <li class="nav-item dropdown">
-    <a class="nav-link dropdown-toggle <%= current_class?(orders_path) %>" href=" <% orders_path %> " id="navbarDropdown"
+    <a class="nav-link dropdown-toggle <%= current_class?(orders_path) %> <%= current_class?(new_order_path) %>" href=" <% orders_path %> " id="navbarDropdown"
       role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       Pedidos
     </a>
@@ -17,7 +17,7 @@
 
   <% if policy(Client).index?%>
     <li class="nav-item dropdown">
-      <a class="nav-link dropdown-toggle <%= current_class?(clients_path) %>" href=" <%= clients_path %> " id="navbarDropdown"
+      <a class="nav-link dropdown-toggle <%= current_class?(clients_path) %> <%= current_class?(new_client_path) %>" href=" <%= clients_path %> " id="navbarDropdown"
         role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         Clientes
       </a>
@@ -29,7 +29,7 @@
   <% end %>
   <% if policy(Area).index?%>
     <li class="nav-item dropdown">
-      <a class="nav-link dropdown-toggle <%= current_class?(clients_path) %>" href=" <%= clients_path %> " id="navbarDropdown"
+      <a class="nav-link dropdown-toggle <%= current_class?(areas_path) %> <%= current_class?(delivery_index_path) %>" href=" <%= clients_path %> " id="navbarDropdown"
         role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         Reparto
       </a>

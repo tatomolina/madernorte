@@ -22,13 +22,11 @@
       <% @area.not_delivered.each do |order| %>
         <tr class=" <%= priority?(order.priority) %> ">
           <td>
-            <h4>
               <% if (order.common_client.present? && order.client.name == "CONSUMIDOR FINAL") %>
                 <%= link_to order.common_client, order.client %>
               <% else %>
                 <%= link_to order.client.name, order.client %>
               <% end %>
-            </h4>
           </td>
           <td class="date"> <%= order.created_at.to_date.to_formatted_s(:iso8601) %> </td>
           <td> <%= order.direction %> </td>
