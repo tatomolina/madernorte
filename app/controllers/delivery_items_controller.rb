@@ -3,6 +3,7 @@ class DeliveryItemsController < ApplicationController
   def create
     @delivery = current_delivery
     @delivery_item = @delivery.delivery_items.new(delivery_items_params)
+    authorize @delivery_item
     @delivery.save
     session[:delivery_id] = @delivery.id
   end
@@ -11,6 +12,7 @@ class DeliveryItemsController < ApplicationController
 
     @delivery = current_delivery
     @delivery_item = @delivery.delivery_items.find(params[:id])
+    authorize @delivery_item
     @delivery_item.destroy
     @delivery_items = @delivery.delivery_items
     respond_to do |format|
