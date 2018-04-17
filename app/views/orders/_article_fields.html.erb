@@ -8,5 +8,7 @@
   <td class="bools"> <%= f.input :invoiced,    as: :boolean,    label: false  %> </td>
   <td class="bools"> <%= f.input :payed,       as: :boolean,    label: false  %> </td>
   <td class="bools"> <%= f.input :process,     as: :boolean,    label: false  %> </td>
-  <td class="bools"> <%= f.input :on_delivery, as: :boolean,    label: false  %> </td>
+  <% if (current_user.has_role? :delivery) %>
+    <td class="bools"> <%= f.input :on_delivery, as: :boolean,    label: false  %> </td>
+  <% end %>
 </tr>
