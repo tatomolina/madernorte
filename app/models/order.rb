@@ -36,7 +36,7 @@ class Order < ApplicationRecord
   end
 
   def delivered?
-    ((self.articles.select{|x| x.delivered }.count == self.articles.count))
+    ((self.articles_delivered.count == self.articles.count))
   end
 
   def invoiced?
@@ -48,11 +48,19 @@ class Order < ApplicationRecord
   end
 
   def on_delivery?
-    ((self.articles.select{|x| x.on_delivery }.count > 0))
+    ((self.article_on_delivery.count > 0))
   end
 
   def process?
     ((self.articles.select{|x| x.process }.count >= 1))
+  end
+
+  def articles_on_delivery
+    self.articles.select{|x| x.on_delivery }
+  end
+
+  def articles_delivered
+    self.articles.select{|x| x.delivered }
   end
 
   def to_process

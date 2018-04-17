@@ -30,8 +30,16 @@
             <td class="bools"><%= check_box "item.order", "payed?", {:checked => item.order.payed?, :disabled => true}%></td>
 
             <td class="view">
-              <%= link_to "Ver", order_path(item.order), class: "btn btn-outline-primary" %>
+              <button class="btn btn-outline-success" type="button" data-toggle="collapse" data-target="#collapse<%= item.order.id %>" aria-expanded="false" aria-controls="collapseExample">
+                +
+              </button>
               <%= link_to "Eliminar", item, method: :delete, remote: true, class: "btn btn-outline-danger" %>
+            </td>
+          </tr>
+          <tr id="collapse<%= item.order.id %>" class="collapse article">
+            <%= render 'articles/articles', order: item.order %>
+            <td class="view">
+              <%= link_to "Ver", order_path(item.order), class: "btn btn-outline-primary" %>
             </td>
           </tr>
         <% end %>

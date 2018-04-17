@@ -1,5 +1,5 @@
 <div class="row justify-content-center">
-  <h1 class"h1">Numero de Pedido: <%= @delivery.id %></h1>
+  <h1 class"h1">Numero de Reparto: <%= @delivery.id %></h1>
 </div>
 <hr>
 <div>
@@ -43,8 +43,9 @@
                 <%= link_to "Ver", order_path(item.order), class: "btn btn-outline-primary" %>
               </td>
             </tr>
-
-            <%= render 'articles/articles', order: item.order %>
+            <tr id="collapse<%= item.order.id %>" class="collapse article">
+              <%= render 'articles/articles', order: item.order %>
+            </tr>
 
             <% end %>
 

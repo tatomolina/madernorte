@@ -38,10 +38,18 @@
 
           <td class="view">
             <%= simple_form_for @delivery_item, remote: true, class: "form-inline" do |f| %>
-              <%= link_to "Ver", order_path(order), class: "btn btn-outline-primary" %>
               <%= f.hidden_field :order_id, value: order.id %>
+              <button class="btn btn-outline-success" type="button" data-toggle="collapse" data-target="#collapse<%= order.id %>" aria-expanded="false" aria-controls="collapseExample">
+                +
+              </button>
               <%= f.button :submit, "Reparto", class: "btn btn-outline-warning" %>
             <% end %>
+          </td>
+        </tr>
+        <tr id="collapse<%= order.id %>" class="collapse article">
+          <%= render 'articles/articles', order: order %>
+          <td class="view">
+            <%= link_to "Ver", order_path(order), class: "btn btn-outline-primary" %>
           </td>
         </tr>
       <% end %>

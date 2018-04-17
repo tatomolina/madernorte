@@ -7,7 +7,7 @@ module ApplicationHelper
 
   def priority?(priority)
     if ("Urgente" == priority.name)
-      return 'table-danger'
+      'table-danger'
     elsif ("Media" == priority.name)
       'table-warning'
     else
@@ -17,15 +17,17 @@ module ApplicationHelper
 
   def article_on_delivery?(article)
     if ((true == article.on_delivery) && (false == article.delivered))
-      return 'table-success'
+      'table-success'
+    elsif ((true == article.on_delivery) && (true == article.delivered))
+      'table-danger'
     else
       ''
     end
   end
 
   def order_on_delivery?(order)
-    if ((true == order.on_delivery?) && (false == order.delivered?))
-      return 'table-success'
+    if (order.articles_on_delivery.count > order.articles_delivered.count)
+      'table-success'
     else
       ''
     end
