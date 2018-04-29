@@ -3,10 +3,13 @@
   <td> <%= f.input :quantity,                   label: false, class: "form-control" %> </td>
   <td> <%= f.input :description,                label: false, class: "form-control" %> </td>
   <td> <%= f.input :details,                    label: false, class: "form-control" %> </td>
+<!--
   <td class="bools"> <%= f.input :done,        as: :boolean,    label: false  %> </td>
   <td class="bools"> <%= f.input :delivered,   as: :boolean,    label: false  %> </td>
-  <td class="bools"> <%= f.input :invoiced,    as: :boolean,    label: false  %> </td>
-  <td class="bools"> <%= f.input :payed,       as: :boolean,    label: false  %> </td>
   <td class="bools"> <%= f.input :process,     as: :boolean,    label: false  %> </td>
   <td class="bools"> <%= f.input :on_delivery, as: :boolean,    label: false  %> </td>
+-->
+<td class="bools"> <%= f.input :invoiced,    as: :boolean,    label: false  %> </td>
+<td class="bools"> <%= f.input :payed,       as: :boolean,    label: false  %> </td>
+  <td class="bools"> <%= f.association :article_state, label: false, class: "form-control" %> </td>
 </tr>

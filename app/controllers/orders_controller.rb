@@ -106,6 +106,6 @@ class OrdersController < ApplicationController
     params.require(:order).permit(:direction, :client_id, :area_id, :priority_id,
         :vendor_id, :phone, :phone_reference, :observations, :common_client,
       articles_attributes: [:id, :_destroy, :order_id, :quantity,
-         :description, :details, :done, :delivered, :invoiced, :payed, :process, :on_delivery])
+         :description, :details, :done, :delivered, :invoiced, :payed, :process, :on_delivery, :article_state_id])
   end
 end

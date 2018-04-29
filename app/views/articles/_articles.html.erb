@@ -1,4 +1,4 @@
-<td colspan="7">
+<td colspan="6">
   <div id="table-wrapper">
     <div id="table-scroll">
       <table class="table table-bordered">
@@ -7,8 +7,7 @@
             <th scope="col" class="quantity">Cantidad</th>
             <th scope="col">Descripcion</th>
             <th scope="col" class="details">Detalles</th>
-            <th scope="col" class="bools-header">Procesado</th>
-            <th scope="col" class="bools-header">Entregado</th>
+            <th scope="col" class="state-header">Estado</th>
             <th scope="col" class="bools-header">Facturado</th>
             <th scope="col" class="bools-header">Pagado</th>
           </tr>
@@ -19,8 +18,7 @@
                 <td> <%= article.quantity %> </td>
                 <td> <%= article.description %> </td>
                 <td> <%= article.details %> </td>
-                <td class="bools"><%= check_box "article", "done", {:checked => article.done?, :disabled => true} %></td>
-                <td class="bools"><%= check_box "article", "delivered", {:checked => article.delivered?, :disabled => true }%></td>
+                <td class="bools"><%= article.article_state.name %></td>
                 <td class="bools"><%= check_box "article", "invoiced", {:checked => article.invoiced?, :disabled => true} %></td>
                 <td class="bools"><%= check_box "article", "payed", {:checked => article.payed?, :disabled => true} %></td>
               </tr>

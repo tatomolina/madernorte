@@ -39,6 +39,11 @@ th.bools-header {
   width: 100px;
 }
 
+th.state-header {
+  @extend .text-center;
+  width: 145px;
+}
+
 td.bools {
   @extend .text-center;
 }

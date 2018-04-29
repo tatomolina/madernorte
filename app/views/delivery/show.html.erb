@@ -10,8 +10,7 @@
             <th scope="col" class="client">Cliente</th>
             <th scope="col">Zona</th>
             <th scope="col" class="date">Fecha</th>
-            <th scope="col" class="bools-header">Procesado</th>
-            <th scope="col" class="bools-header">Entregado</th>
+            <th scope="col" class="state-header">Estado</th>
             <th scope="col" class="bools-header">Facturado</th>
             <th scope="col" class="bools-header">Pagado</th>
             <th scope="col" class="view"></th>
@@ -31,8 +30,7 @@
               <td> <%= item.order.area.name %> </td>
               <td class="date"> <%= item.order.created_at.to_date.to_formatted_s(:iso8601) %> </td>
 
-              <td class="bools"><%= check_box "item.order", "done?", {:checked => item.order.done?, :disabled => true}%></td>
-              <td class="bools"><%= check_box "item.order", "delivered?", {:checked => item.order.delivered?, :disabled => true}%></td>
+              <td class="bools"><%= item.order.state %></td>
               <td class="bools"><%= check_box "item.order", "invoiced?", {:checked => item.order.invoiced?, :disabled => true}%></td>
               <td class="bools"><%= check_box "item.order", "payed?", {:checked => item.order.payed?, :disabled => true}%></td>
 

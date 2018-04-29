@@ -12,8 +12,7 @@
       <% end %>
       <th scope="col" class="date">Fecha</th>
       <th scope="col">Direccion</th>
-      <th scope="col" class="bools-header">Procesado</th>
-      <th scope="col" class="bools-header">Entregado</th>
+      <th scope="col" class="state-header">Estado</th>
       <th scope="col" class="bools-header">Facturado</th>
       <th scope="col" class="bools-header">Pagado</th>
       <th scope="col" class="view"></th>
@@ -28,8 +27,7 @@
         <td class="date"> <%= order.created_at.to_date.to_formatted_s(:iso8601) %> </td>
         <td> <%= order.direction %> </td>
 
-        <td class="bools"><%= check_box "order", "done?", {:checked => order.done?, :disabled => true}%></td>
-        <td class="bools"><%= check_box "order", "delivered?", {:checked => order.delivered?, :disabled => true}%></td>
+        <td class="bools"><%= order.state %></td>
         <td class="bools"><%= check_box "order", "invoiced?", {:checked => order.invoiced?, :disabled => true}%></td>
         <td class="bools"><%= check_box "order", "payed?", {:checked => order.payed?, :disabled => true}%></td>
 

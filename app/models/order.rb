@@ -24,47 +24,63 @@ class Order < ApplicationRecord
   end
 
   def self.not_completed
-    self.all.order(created_at: :desc).select { |x| !x.done? || !x.delivered? || !x.invoiced? || !x.payed? }
+    self.all.order(created_at: :desc).select { |x| !x.delivered? || !x.invoiced? || !x.payed? }
   end
 
   def self.worker_not_completed
-    self.all.order(priority_id: :desc, created_at: :desc).select { |x| (!x.done?) && x.process? }
+    self.all.order(priority_id: :desc, created_at: :desc).select { |x| x.process? }
+  end
+
+  def state
+      if self.delivered?
+        "Entregado"
+      elsif self.done?
+        "Procesado"
+      elsif (self.articles.select{|x| x.article_state.name == "Cancelado" }.count == self.articles.count)
+        "Cancelado"
+      else
+        "En Poceso"
+      end
   end
 
   def done?
-    ((self.articles.select{|x| x.done }.count == self.articles.count))
+    self.articles_done.count >= 1 && self.articles.select{|x| (x.article_state.name == "Entregado") || x.article_state.name == "Procesado" }.count == self.articles.count
   end
 
   def delivered?
-    ((self.articles_delivered.count == self.articles.count))
+    self.articles_delivered.count == self.articles.count
   end
 
   def invoiced?
-    ((self.articles.select{|x| x.invoiced }.count == self.articles.count))
+    self.articles.select{|x| x.invoiced }.count == self.articles.count
   end
 
   def payed?
-    ((self.articles.select{|x| x.payed }.count == self.articles.count))
+    self.articles.select{|x| x.payed }.count == self.articles.count
   end
 
   def on_delivery?
-    ((self.article_on_delivery.count > 0))
+    self.article_on_delivery.count > 0
   end
 
   def process?
-    ((self.articles.select{|x| x.process }.count >= 1))
+    self.to_process.count >= 1
   end
 
-  def articles_on_delivery
-    self.articles.select{|x| x.on_delivery }
-  end
-
-  def articles_delivered
-    self.articles.select{|x| x.delivered }
+  def articles_done
+    self.articles.select{|x| x.article_state.name == "Procesado" }
   end
 
   def to_process
-    self.articles.select{|x| x.process }
+    self.articles.select{|x| x.article_state.name == "Procesar" }
+  end
+
+  def articles_on_delivery
+    self.articles.select{|x| x.article_state.name == "En Camion" }
+  end
+
+  def articles_delivered
+    self.articles.select{|x| x.article_state.name == "Entregado" }
   end
 
 end

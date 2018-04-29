@@ -10,12 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180416020156) do
+ActiveRecord::Schema.define(version: 20180427165103) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "areas", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "article_states", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -34,6 +40,8 @@ ActiveRecord::Schema.define(version: 20180416020156) do
     t.text "details"
     t.boolean "payed"
     t.boolean "on_delivery"
+    t.bigint "article_state_id"
+    t.index ["article_state_id"], name: "index_articles_on_article_state_id"
     t.index ["order_id"], name: "index_articles_on_order_id"
   end
 
@@ -142,6 +150,7 @@ ActiveRecord::Schema.define(version: 20180416020156) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "articles", "article_states"
   add_foreign_key "articles", "orders"
   add_foreign_key "delivery_items", "deliveries"
   add_foreign_key "delivery_items", "orders"
