@@ -16,9 +16,9 @@ module ApplicationHelper
   end
 
   def article_on_delivery?(article)
-    if ((true == article.on_delivery) && (false == article.delivered))
+    if (article.article_state.name = "En Camion")
       'table-success'
-    elsif ((true == article.on_delivery) && (true == article.delivered))
+    elsif (article.article_state.name = "Entregado")
       'table-danger'
     else
       ''
