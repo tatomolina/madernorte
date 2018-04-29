@@ -16,10 +16,14 @@ module ApplicationHelper
   end
 
   def article_on_delivery?(article)
-    if (article.article_state.name = "En Camion")
+    if (article.article_state.name == "En Camion")
+      'table-primary'
+    elsif (article.article_state.name == "Entregado")
       'table-success'
-    elsif (article.article_state.name = "Entregado")
+    elsif (article.article_state.name == "Cancelado")
       'table-danger'
+    elsif (article.article_state.name == "Procesado")
+      'table-warning'
     else
       ''
     end
