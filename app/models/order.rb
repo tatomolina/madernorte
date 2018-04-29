@@ -48,7 +48,7 @@ class Order < ApplicationRecord
   end
 
   def delivered?
-    self.articles_delivered.count == self.articles.count
+    self.articles_delivered.count >= 1 && self.articles.select{|x| (x.article_state.name == "Entregado") || x.article_state.name == "Cancelado" }.count == self.articles.count
   end
 
   def invoiced?
