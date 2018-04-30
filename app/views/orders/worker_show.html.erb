@@ -18,8 +18,7 @@
         <th scope="col" class="measure">Cantidad</th>
         <th scope="col">Descripcion</th>
         <th scope="col">Detalles</th>
-        <th scope="col" class="bools">Procesado</th>
-        <th scope="col" class="bools">Entregado</th>
+        <th scope="col" class="state-header">Estado</th>
       </tr>
     </thead>
     <tbody>
@@ -28,9 +27,7 @@
             <td> <%= article.quantity %> </td>
             <td> <%= article.description %> </td>
             <td> <%= article.details %> </td>
-
-            <td><%= check_box "article", "done", {:checked => article.done?, :disabled => true} %></td>
-            <td><%= check_box "article", "delivered", {:checked => article.delivered?, :disabled => true }%></td>
+            <td class="text-center"> <%= article.article_state.name %> </td>
 
           </tr>
         <% end %>

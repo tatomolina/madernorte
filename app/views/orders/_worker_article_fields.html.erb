@@ -2,6 +2,5 @@
   <td> <%= f.input :quantity,                 label: false, class: "form-control", readonly: true %> </td>
   <td> <%= f.input :description,              label: false, class: "form-control", readonly: true %> </td>
   <td> <%= f.input :details,                  label: false, class: "form-control" %> </td>
-  <td> <%= f.input :done,      as: :boolean,  label: false, class: "form-check-input" %> </td>
-  <td> <%= f.input :delivered, as: :boolean,  label: false, class: "form-check-input" %> </td>
+  <td class="bools"> <%= f.association :article_state, label: false, class: "form-control" %> </td>
 </tr>
