@@ -25,6 +25,8 @@ class Order < ApplicationRecord
 
   def self.not_completed
     self.all.order(created_at: :desc).select { |x| !x.delivered? || !x.invoiced? || !x.payed? }
+    # Tengo q cambiar esto
+    #self.where("payed = ? OR invoiced = ? OR delivered = ?", false, false, false)
   end
 
   def self.worker_not_completed
