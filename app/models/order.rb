@@ -34,12 +34,12 @@ class Order < ApplicationRecord
   end
 
   def state
-      if self.delivered?
+      if self.canceled?
+        "Cancelado"
+      elsif self.delivered?
         "Entregado"
       elsif self.done?
         "Procesado"
-      elsif (self.articles.select{|x| x.article_state.name == "Cancelado" }.count == self.articles.count)
-        "Cancelado"
       else
         "En Poceso"
       end
@@ -50,7 +50,11 @@ class Order < ApplicationRecord
   end
 
   def delivered?
-    self.articles_delivered.count >= 1 && self.articles.select{|x| (x.article_state.name == "Entregado") || x.article_state.name == "Cancelado" }.count == self.articles.count
+    self.articles.select{|x| (x.article_state.name == "Entregado") || x.article_state.name == "Cancelado" }.count == self.articles.count
+  end
+
+  def canceled?
+    self.articles.select{|x| x.article_state.name == "Cancelado" }.count == self.articles.count
   end
 
   def invoiced?
