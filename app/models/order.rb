@@ -46,7 +46,7 @@ class Order < ApplicationRecord
   end
 
   def done?
-    self.articles_done.count >= 1 && self.articles.select{|x| (x.article_state.name == "Entregado") || x.article_state.name == "Procesado" }.count == self.articles.count
+    (self.articles_done.count >= 1) && (self.articles.select{|x| (x.article_state.name == "Entregado") || x.article_state.name == "Procesado"|| x.article_state.name == "Cancelado" }.count == self.articles.count)
   end
 
   def delivered?
